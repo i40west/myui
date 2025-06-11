@@ -1,0 +1,107 @@
+.container {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+	justify-content: flex-end;
+	gap: 2px;
+	width: var(--w, fit-content);
+	--scale: var(--x, 1.0);
+	font-size: calc(var(--step--1) * var(--scale));
+	line-height: 1;
+	min-width: 15.5ch;
+	color: var(--text-color);
+}
+
+.inputgroup {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	margin-top: 4px;
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	background-color: hsl(0 0% 100% / 0.09);
+	width: 100%;
+
+	&:has([data-focus-within]) {
+		outline: none;
+		border: 1px solid var(--alt-border-color);
+	}
+}
+
+.input {
+	display: inline-flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: baseline;
+	color: var(--text-color);
+	padding: 0.5em;
+	width: 100%;
+	white-space: nowrap;
+	outline: none;
+	white-space: nowrap;
+	transition: border-color 0.2s;
+}
+
+.openbutton {
+	height: calc((var(--step--1) + 12px) * var(--scale));
+	aspect-ratio: 1;
+	font-size: calc(var(--step--1) * var(--scale));
+	padding: 0;
+	border: none;
+	border-radius: 3px;
+	margin-right: calc(2px * var(--scale));
+}
+
+.segment {
+	padding: 0 2px;
+	font-variant-numeric: tabular-nums;
+	text-align: end;
+	color: var(--text-color);
+
+	&[data-type=literal] {
+		padding: 0;
+	}
+
+	&[data-placeholder] {
+		color: var(--deemphasis-color);
+		font-style: italic;
+	}
+
+	&:focus {
+		background: hsl(0 0% 100% / 0.18);
+		outline: none;
+		border-radius: 4px;
+		caret-color: transparent;
+	}
+}
+
+.popover {
+	max-width: unset;
+	width: fit-content;
+}
+
+.label {
+	display: block;
+	color: var(--label-color, var(--text-color));
+	font-size: calc(var(--step--1) * (1 + 0.7 * (var(--scale) - 1)));
+	line-height: 1;
+	height: 1lh;
+}
+
+.description {
+	display: block;
+	font-size: calc(var(--step--2) * (1 + 0.5 * (var(--scale) - 1)));
+	line-height: 1;
+	color: var(--deemphasis-color);
+	padding: 0;
+	margin-top: 4px;
+}
+
+.error {
+	display: block;
+	color: hsl(0 100% 65%);
+	font-size: calc(var(--step--2) * (1 + 0.5 * (var(--scale) - 1)));
+	line-height: 1;
+	margin-top: 2px;
+}

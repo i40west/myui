@@ -1,0 +1,96 @@
+.container {
+	width: fit-content;
+	max-width: 100%;
+	color: var(--text-color);
+	border: 1px solid var(--alt-border-color);
+	border-radius: 6px;
+	--scale: var(--x, 1.0);
+	padding: var(--space-xs);
+	background-color: var(--popover-bg-color, oklch(from var(--bg-color) calc(l + 0.16) calc(c * 0.62) calc(h - 20)));
+
+	header {
+		display: flex;
+		align-items: center;
+		margin: 0 4px .5rem 4px;
+
+		h2 {
+			font-family: var(--main-font);
+			font-size: calc(var(--step--1) * var(--scale));
+		}
+
+		.heading {
+			font-weight: var(--base-weight + 50);
+			flex: 1;
+			margin: 0;
+			text-align: center;
+			font-size: calc(var(--step--1) * var(--scale));
+		}
+	}
+
+	.navbutton {
+		width: calc(var(--space-m) * var(--scale));
+		height: calc(var(--space-m) * var(--scale));
+		font-size: calc(var(--step--1) * var(--scale));
+		padding: 0;
+		border: none;
+		border-radius: 5px;
+	}
+
+	.headercell {
+		font-size: calc(var(--step--2) * var(--scale));
+		font-weight: var(--base-weight + 50);
+		color: var(--deemphasis-color);
+	}
+
+	.grid td[aria-disabled="true"] {
+		cursor: default;
+	}
+
+	.cell {
+		width: calc(var(--space-m) * var(--scale));
+		font-size: calc(var(--step--1) * var(--scale));
+		line-height: calc(var(--space-m) * var(--scale));
+		text-align: center;
+		border-radius: 6px;
+		cursor: default;
+		outline: none;
+		margin: 1px;
+		forced-color-adjust: none;
+		cursor: pointer;
+
+		&[data-outside-month] {
+			display: none;
+		}
+
+		&[data-pressed] {
+			background: var(--highlight-bg-color);
+		}
+
+		&[data-focus-visible] {
+			outline: none;
+		}
+
+		&[data-selected] {
+			background: var(--highlight-bg-color);
+			color: var(--text-color);
+		}
+
+		&[data-hovered]:not([data-selected]) {
+			background-color: hsl(0 0% 100% / 15%);
+		}
+
+		&[data-weekend]:not([data-selected]) {
+			color: var(--text-alt-highlight-color);
+		}
+
+		&[data-today]:not([data-selected]) {
+			color: var(--text-highlight-color);
+		}
+	}
+
+	&[data-range] .cell {
+		&[data-selected]:not([data-selection-start]):not([data-selection-end]) {
+			background-color: oklch(from var(--highlight-bg-color) calc(l - 0.02) calc(c - 0.05) h);
+		}
+	}
+}

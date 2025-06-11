@@ -1,0 +1,87 @@
+/* Local site styles */
+
+main {
+	padding-top: var(--space-l);
+	/* Chromium does something weird with the background color if this doesn't extend to 100vh */
+	min-height: 100vh;
+}
+
+main section, main article {
+	/* width: 49em; */
+	max-width: 95vw;
+	margin: 0 auto;
+	line-height: 1.3em;
+}
+
+.generator {
+	max-width: 50em;
+	margin: 0 auto;
+}
+
+/* nav { */
+/* 	position: fixed; */
+/* 	top: 0; */
+/* 	left: 0; */
+/* 	-webkit-backdrop-filter: blur(10px) brightness(0.6); */
+/* 	backdrop-filter: blur(10px) brightness(0.6); */
+/* } */
+
+header {
+	max-width: 85vw;
+	margin: 0 auto var(--space-l) auto;
+	text-align: center;
+}
+
+header svg {
+	margin: 0 15px;
+}
+
+article h2 {
+	margin-top: var(--space-xl);
+}
+h3 {
+	font-feature-settings: 'ss04' off;
+}
+
+main img {
+	animation: fadeIn 0.4s;
+}
+
+h1 {
+	font-size: var(--step-9);
+	font-weight: calc(var(--base-weight) + 200);
+}
+
+h3, h4, h5, h6 {
+	font-family: var(--main-font);
+	font-size: var(--step-1);
+}
+
+strong {
+	color: var(--text-highlight-color);
+	font-weight: calc(var(--base-weight) + 50);
+}
+
+@media (max-width: 768px) {
+	h1 {
+		font-size: var(--step-7);
+	}
+}
+
+@media (max-width: 500px) {
+	h1 {
+		font-size: var(--step-5);
+	}
+}
+
+@keyframes pulsate {
+0% {
+	border-color: var(--box-border-color, var(--border-color));
+}
+50% {
+	border-color: hsl(61 90% 87% / 100%);
+}
+100% {
+	border-color: var(--box-border-color, var(--border-color));
+}
+}

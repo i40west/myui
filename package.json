@@ -1,0 +1,110 @@
+{
+  "name": "myui",
+  "version": "0.1.0",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./Button": {
+      "types": "./dist/components/Button/index.d.ts",
+      "import": "./dist/components/Button/index.js"
+    },
+    "./Calendar": {
+      "types": "./dist/components/Calendar/index.d.ts",
+      "import": "./dist/components/Calendar/index.js"
+    },
+    "./Checkbox": {
+      "types": "./dist/components/Checkbox/index.d.ts",
+      "import": "./dist/components/Checkbox/index.js"
+    },
+    "./ColorPicker": {
+      "types": "./dist/components/ColorPicker/index.d.ts",
+      "import": "./dist/components/ColorPicker/index.js"
+    },
+    "./ComboBox": {
+      "types": "./dist/components/ComboBox/index.d.ts",
+      "import": "./dist/components/ComboBox/index.js"
+    },
+    "./DateField": {
+      "types": "./dist/components/DateField/index.d.ts",
+      "import": "./dist/components/DateField/index.js"
+    },
+    "./Popover": {
+      "types": "./dist/components/Popover/index.d.ts",
+      "import": "./dist/components/Popover/index.js"
+    },
+    "./RadioGroup": {
+      "types": "./dist/components/RadioGroup/index.d.ts",
+      "import": "./dist/components/RadioGroup/index.js"
+    },
+    "./Switch": {
+      "types": "./dist/components/Switch/index.d.ts",
+      "import": "./dist/components/Switch/index.js"
+    },
+    "./Tabs": {
+      "types": "./dist/components/Tabs/index.d.ts",
+      "import": "./dist/components/Tabs/index.js"
+    },
+    "./TextArea": {
+      "types": "./dist/components/TextArea/index.d.ts",
+      "import": "./dist/components/TextArea/index.js"
+    },
+    "./TextField": {
+      "types": "./dist/components/TextField/index.d.ts",
+      "import": "./dist/components/TextField/index.js"
+    },
+    "./ToggleButtonGroup": {
+      "types": "./dist/components/ToggleButtonGroup/index.d.ts",
+      "import": "./dist/components/ToggleButtonGroup/index.js"
+    },
+    "./Tooltip": {
+      "types": "./dist/components/Tooltip/index.d.ts",
+      "import": "./dist/components/Tooltip/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && npm run copy-css",
+    "copy-css": "find src/components -name '*.module.css' -exec sh -c 'mkdir -p dist/$(dirname ${1#src/}) && cp \"$1\" dist/${1#src/}' _ {} \\;",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "dev": "tsc -w",
+    "clean": "rm -rf dist",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "culori": "^4.0.1",
+    "luxon": "^3.6.1",
+    "react-aria-components": "^1.10.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-docs": "^9.0.8",
+    "@storybook/react-vite": "^9.0.8",
+    "@stylistic/eslint-plugin": "^4.4.1",
+    "@types/culori": "^4.0.0",
+    "@types/luxon": "^3.6.2",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.6",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.5",
+    "eslint": "^9.28.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-storybook": "^9.0.8",
+    "globals": "^16.2.0",
+    "sanitize.css": "^13.0.0",
+    "storybook": "^9.0.8",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.34.0"
+  }
+}

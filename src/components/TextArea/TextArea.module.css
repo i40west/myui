@@ -1,0 +1,63 @@
+.container {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+	justify-content: flex-end;
+	gap: 2px;
+	width: var(--w, fit-content);
+	--scale: var(--x, 1.0);
+	--sz: calc(var(--size, var(--step--2)) * var(--scale));
+}
+
+.textarea {
+	font-family: var(--main-font);
+	background-color: hsl(0 0% 100% / 0.09);
+	color: var(--text-color);
+	font-size: var(--sz);
+	line-height: 1.4em;
+	padding: 5px 5px 8px calc(5px * var(--scale));
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	margin-top: 4px;
+	width: 100%;
+	min-width: 150px;
+	height: 2lh;
+	min-height: var(--h, 2lh);
+	outline: none;
+	resize: none;
+	transition: border-color 0.2s;
+}
+
+.textarea[data-focused] {
+	outline: none;
+	border: 1px solid var(--alt-border-color);
+}
+
+.textarea[data-focus-visible] {
+	outline: none;
+}
+
+.label {
+	display: block;
+	color: var(--label-color, var(--text-color));
+	font-size: calc(var(--step-0) * (1 + 0.5 * (var(--scale) - 1)));
+	line-height: 1em;
+}
+
+.description {
+	display: block;
+	font-size: calc(var(--step--2) * (1 + 0.5 * (var(--scale) - 1)));
+	color: var(--deemphasis-color);
+	padding: 0;
+	margin-top: 4px;
+	line-height: 1em;
+}
+
+.error {
+	display: block;
+	color: hsl(0 100% 65%);
+	font-size: calc(var(--step--2) * (1 + 0.5 * (var(--scale) - 1)));
+	line-height: 1;
+	margin-top: 2px;
+	margin-left: 3px;
+}

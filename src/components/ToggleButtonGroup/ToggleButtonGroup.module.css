@@ -1,0 +1,109 @@
+/* This is largely the same as the Button component,
+		except the selected state and some background colors,
+		and the group stuff with orientation options. */
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	--scale: var(--x, 1.0);
+	height: calc(var(--step-3) * (1 + 0.7 * (var(--scale) - 1)));
+	font-size: calc(var(--step--1) * var(--scale));
+	padding: 0 calc(var(--space-2xs) * var(--scale)) calc(2px * var(--scale));
+	border: 1px solid var(--button-border-color, var(--alt-border-color));
+	border-radius: calc(var(--step-3) * (1 + 0.7 * (var(--scale) - 1)) / 2);
+	--bg: var(--button-bg-color, oklch(from var(--bg-color) 0.3 calc(c * 0.75) calc(h - 30)));
+	background-color: var(--bg);
+	--fg: var(--button-text-color, oklch(from var(--text-color) 0.89 c h));
+	color: var(--fg);
+	outline: none;
+	transition: background-color 0.15s, color 2s;
+}
+
+.button > * {
+	display: block;
+}
+
+.button svg {
+	margin: 0;
+	vertical-align: baseline;
+	position: relative;
+	top: calc(0.5px * var(--scale));
+}
+
+.button[data-hovered] {
+	background-color: var(--button-hover-bg-color, oklch(from var(--bg) calc(l * 1.1) calc(c * 0.6) h));
+	color: var(--button-hover-text-color, oklch(from var(--text-color) 0.89 calc(c * 0.7) calc(h - 165)));
+	cursor: pointer;
+	transition: background-color 0.15s, color 0.3s;
+}
+
+.button[data-selected] {
+	background-color: var(--highlight-bg-color);
+	color: var(--primary-9);
+}
+
+.button[data-selected][data-hovered] {
+	background-color: oklch(from var(--highlight-bg-color) calc(l * 1.02) calc(c * 0.8) h);
+}
+
+.button[data-pressed] {
+	background-color: oklch(from var(--bg) calc(l * 1.4) calc(c * 0.6) h);
+	border-color: oklch(from var(--button-border-color, var(--alt-border-color)) calc(l * 0.95) calc(c * 0.5) h);
+	color: oklch(from var(--fg) calc(l * 0.85) calc(c * 0.85) calc(h - 165));
+}
+
+.button[data-focused] {
+	outline: none;
+}
+
+.button[data-focus-visible] {
+	outline: 2px solid hsl(0 0% 100% / 0.4);
+	outline-offset: calc(2px * var(--scale));
+}
+
+.button[data-disabled] {
+	cursor: not-allowed;
+}
+
+.group {
+	display: flex;
+	flex-flow: row nowrap;
+	--scale: var(--x, 1.0);
+}
+
+.group[data-orientation='vertical'] {
+	flex-flow: column nowrap;
+}
+
+.group[data-orientation='horizontal'] > .button:first-of-type {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.group[data-orientation='horizontal'] > .button:last-of-type {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.group[data-orientation='vertical'] > .button:first-of-type {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.group[data-orientation='vertical'] > .button:last-of-type {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.group > .button:not(:first-of-type):not(:last-of-type) {
+	border-radius: 0;
+}
+
+.group[data-orientation='horizontal'] > .button:not(:first-of-type) {
+	border-left: 0;
+}
+
+.group[data-orientation='vertical'] > .button:not(:first-of-type) {
+	border-top: 0;
+}

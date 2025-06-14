@@ -1,42 +1,32 @@
 :root {
-	--bg-color: var(--primary-0);
-	--text-color: var(--primary-8);
-	--header-color: var(--primary-9);
-	--text-highlight-color: var(--comp-9);
-	--text-alt-highlight-color: var(--warm-7);
-	--deemphasis-color: var(--primary-5);
+	--bg-color: hsl(0 0% 13% / 100%);
+	--text-color: hsl(0 0% 86% / 100%);
+	--nav-bg-color: hsl(0 0% 15% / 100%);
+	--nav-active-color: hsl(60 30% 90% / 100%);
+	--deemphasis-color: hsl(0 0% 74% / 100%);
 
-	--link-color: var(--wet-8);
-	--link-hover-color: var(--warm-8);
-	--link-underline-color: var(--wet-6);
-	--link-underline-hover-color: var(--comp-8);
+	--link-color: hsl(188 100% 42%);
+	--link-hover-color: hsl(50 100% 65%);
+	--link-underline-color: hsl(188 100% 28%);
+	--link-underline-hover-color: hsl(50 100% 85%);
 	--link-hover-transition: color ease 0.3s, text-decoration-color ease 0.3s;
 
-	--header-link-color: var(--link-color);
-	--header-link-hover-color: var(--link-hover-color);
+	--header-link-color: hsl(188 50% 86%);
+	--header-link-hover-color: hsl(50 100% 86%);
 	--header-link-underline-color: transparent;
-	--header-link-underline-hover-color: var(--link-underline-hover-color);
+	--header-link-underline-hover-color: hsl(50 100% 90%);
 
-	--selection-color: oklch(from var(--comp-5) 0.35 0.1 h);
-	--selection-bg-color: oklch(from var(--comp-5) 0.85 0.35 h);
+	--selection-color: hsl(0 0% 13%);
+	--selection-bg-color: hsl(280 100% 88%);
 
-	--border-color: var(--glow-5);
-	--alt-border-color: var(--alt-6);
-	--hr-color: var(--border-color);
-	--button-border-color: var(--alt-border-color);
-	--button-bg-color: oklch(from var(--primary-2) l 0.05 h);
-	--highlight-bg-color: var(--wet-5);
-	--label-color: var(--primary-9);
-	--popover-bg-color: var(--primary-1);
-
-	--nav-color: var(--header-color);
-	/* --nav-bg-color: oklch(from var(--primary-0) calc(l + 0.05) c h); */
-	--nav-active-color: var(--warm-9);
+	--border-color: hsl(223 83% 75% / 100%);
+	--alt-border-color: hsl(173 68% 75% / 100%);
+	--highlight-bg-color: hsl(194 62% 40% / 100%);
+	--button-bg-color: hsl(210 78% 42% / 100%);
+	--hr-color: hsl(0 0% 20%);
 
 	--base-font-size: 16px;
-	--main-font: 'Inter Variable';
-	--mono-font: 'Iosevka Curly';
-	--header-font: 'Annie Use Your Telescope';
+	--main-font: system-ui;
 
 	/* font sizes */
 	/* https://utopia.fyi/type/calculator?c=320,16,1.125,1240,19,1.2,9,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */

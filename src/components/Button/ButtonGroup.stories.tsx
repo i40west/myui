@@ -34,3 +34,10 @@ export const Default: Story = {
     children: buttons,
   },
 };
+
+export const Square: Story = {
+  args: {
+    children: buttons,
+    square: true,
+  },
+};

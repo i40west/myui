@@ -10,19 +10,22 @@ interface ButtonProps extends AriaButtonProps {
 	tooltip?: string;
 	className?: string;
 	scale?: number;
+	square?: boolean;
 }
 
 interface ButtonGroupProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactElement<typeof Button> | ReactElement<typeof Button>[];
 	scale?: number;
+	square?: boolean;
 }
 
 export const Button = forwardRef(function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
 	// Merge local props with context props
 	[props, ref] = useContextProps(props, ref, ButtonContext);
 
-	const { children, tooltip, className, scale, ...rest } = props;
-	const clnames = className ? `${className} ${classes.button}` : classes.button;
+	const { children, tooltip, className, scale, square = false, ...rest } = props;
+	let clnames = className ? `${className} ${classes.button}` : classes.button;
+	if (square) clnames += ` ${classes.square}`;
 
 	const style: React.CSSProperties = {};
 	if (scale) style['--x'] = scale.toString();
@@ -54,11 +57,11 @@ export const Button = forwardRef(function Button(props: ButtonProps, ref: Forwar
 	);
 });
 
-export function ButtonGroup({ children, className, scale, ...rest }: ButtonGroupProps) {
+export function ButtonGroup({ children, className, scale, square = false, ...rest }: ButtonGroupProps) {
 	return (
 		<div className={`${classes.group} ${className || ''}`} {...rest}>
 			{/* @ts-ignore */}
-			<ButtonContext.Provider value={{ scale }}>
+			<ButtonContext.Provider value={{ scale, square }}>
 				{children}
 			</ButtonContext.Provider>
 		</div>

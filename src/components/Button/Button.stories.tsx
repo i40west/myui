@@ -28,3 +28,10 @@ export const Default: Story = {
     children: 'Button',
   },
 };
+
+export const Square: Story = {
+  args: {
+    children: 'Button',
+    square: true,
+  },
+};

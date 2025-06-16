@@ -17,6 +17,10 @@
 	transition: background-color 0.15s, color 2s;
 }
 
+.button.square {
+	border-radius: 3px;
+}
+
 .button > * {
 	display: block;
 }

@@ -22,6 +22,9 @@ export { Popover, PopoverTrigger } from './components/Popover';
 // RadioGroup components
 export { RadioGroup, RadioGroupList } from './components/RadioGroup';
 
+// Slider component
+export { Slider } from './components/Slider';
+
 // Switch component
 export { Switch } from './components/Switch';
 

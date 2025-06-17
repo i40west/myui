@@ -16,7 +16,7 @@ A modern React component library built on top of React Aria Components, providin
 ### Basic Import
 
 ```tsx
-import { Button, TextField, Calendar } from 'myui';
+import { Button, TextField, Calendar, Slider } from 'myui';
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
       <Button>Click me</Button>
       <TextField label="Name" />
       <Calendar />
+      <Slider label="Volume" defaultValue={50} />
     </div>
   );
 }
@@ -35,6 +36,7 @@ function App() {
 import { Button } from 'myui/Button';
 import { TextField } from 'myui/TextField';
 import { Calendar } from 'myui/Calendar';
+import { Slider } from 'myui/Slider';
 ```
 
 ### CSS Modules
@@ -52,6 +54,7 @@ These components use CSS modules and are not bundled. You must be using a bundle
 - **Switch** - Toggle switch component
 - **RadioGroup** - Radio button group with accessible keyboard navigation
 - **ComboBox** - Searchable dropdown with autocomplete
+- **Slider** - Single or multi-thumb slider for value selection
 
 ### Date & Time Components
 - **Calendar** - Date picker calendar

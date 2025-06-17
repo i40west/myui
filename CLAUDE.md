@@ -64,6 +64,11 @@ This is a React component library built on top of React Aria Components. Key arc
 - Blank lines should not have indentation and there should be no trailing spaces on any lines
 - All code and other text files must end with a newline
 
+## Documentation
+
+- React-Aria documentation is available via the context7 mcp tool
+- Docs for other libraries can also be found with context7
+
 ## Project Guidelines
 
 - Never add dependencies without permission. All dependencies must be vetted first

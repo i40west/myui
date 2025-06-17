@@ -1,0 +1,149 @@
+.container {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: calc(var(--space-3xs) * var(--x, 1));
+	width: var(--w, 100%);
+	--x: 1;
+}
+
+.labelContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: calc(var(--space-2xs) * var(--x));
+}
+
+.label {
+	color: var(--label-color, var(--text-color));
+	font-size: calc(var(--step--1) * var(--x));
+	font-weight: 500;
+}
+
+.output {
+	color: var(--text-color);
+	font-size: calc(var(--step--1) * var(--x));
+	font-variant-numeric: tabular-nums;
+}
+
+.description {
+	display: block;
+	font-size: calc(var(--step--2) * var(--x));
+	color: var(--deemphasis-color);
+	line-height: 1.2;
+	margin-top: calc(var(--space-3xs) * var(--x) * 0.5);
+}
+
+.track {
+	position: relative;
+	height: calc(var(--space-l) * var(--x));
+	width: 100%;
+	display: flex;
+	align-items: center;
+	touch-action: none;
+}
+
+.track[data-orientation="vertical"] {
+	width: calc(var(--space-l) * var(--x));
+	height: calc(var(--space-xl) * var(--x) * 4);
+	flex-direction: column;
+}
+
+.trackBackground {
+	position: absolute;
+	background-color: hsl(0 0% 50% / 0.2);
+	border-radius: calc(var(--space-3xs) * var(--x));
+}
+
+.track[data-orientation="horizontal"] .trackBackground {
+	height: calc(var(--space-3xs) * var(--x));
+	width: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.track[data-orientation="vertical"] .trackBackground {
+	width: calc(var(--space-3xs) * var(--x));
+	height: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.trackFill {
+	position: absolute;
+	background-color: var(--primary-color, hsl(213, 85%, 55%));
+	border-radius: calc(var(--space-3xs) * var(--x));
+}
+
+.track[data-orientation="horizontal"] .trackFill {
+	height: calc(var(--space-3xs) * var(--x));
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.track[data-orientation="vertical"] .trackFill {
+	width: calc(var(--space-3xs) * var(--x));
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 0;
+}
+
+.thumb {
+	width: calc(var(--space-s) * var(--x));
+	height: calc(var(--space-s) * var(--x));
+	border-radius: 50%;
+	background-color: var(--bg-color, white);
+	border: 2px solid var(--primary-color, hsl(213, 85%, 55%));
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	cursor: grab;
+	transition: all 0.15s ease;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.track[data-orientation="vertical"] .thumb {
+	left: 50%;
+	top: auto;
+	transform: translateX(-50%);
+}
+
+.thumb.dragging {
+	cursor: grabbing;
+	transform: translateY(-50%) scale(1.1);
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.track[data-orientation="vertical"] .thumb.dragging {
+	transform: translateX(-50%) scale(1.1);
+}
+
+.thumb.focused {
+	outline: 2px solid var(--focus-color, hsl(213, 85%, 55%));
+	outline-offset: 2px;
+}
+
+.thumb[data-disabled] {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.track[data-disabled] {
+	opacity: 0.6;
+}
+
+.track[data-disabled] .trackBackground {
+	background-color: hsl(0 0% 50% / 0.1);
+}
+
+.track[data-disabled] .trackFill {
+	background-color: hsl(0 0% 50% / 0.3);
+}
+
+.error {
+	display: block;
+	color: var(--error-color, hsl(0 100% 65%));
+	font-size: calc(var(--step--2) * var(--x));
+	line-height: 1.2;
+	margin-top: calc(var(--space-3xs) * var(--x));
+}
+

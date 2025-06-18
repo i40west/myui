@@ -3,12 +3,13 @@ import {
 	OverlayArrow,
 	Dialog,
 	DialogTrigger,
+	Pressable,
 } from 'react-aria-components';
 import { Button } from '../Button';
 import classes from './Popover.module.css';
 
 import type { PopoverProps as AriaPopoverProps } from 'react-aria-components';
-import type { ReactNode } from 'react';
+import type { ReactNode, ReactElement } from 'react';
 
 interface PopoverProps extends Omit<AriaPopoverProps, 'children'> {
 	children: ReactNode;
@@ -19,7 +20,8 @@ interface PopoverProps extends Omit<AriaPopoverProps, 'children'> {
 }
 
 interface PopoverTriggerProps extends Omit<PopoverProps, 'trigger'> {
-	buttonContent: ReactNode;
+	buttonContent?: ReactNode;
+	trigger?: ReactNode;
 	children: ReactNode;
 	scale?: number;
 }
@@ -63,13 +65,34 @@ export function Popover({
 
 export function PopoverTrigger({
 	buttonContent,
+	trigger,
 	children,
 	scale,
 	...props
 }: PopoverTriggerProps) {
+	// Validate that only one trigger method is provided
+	if (buttonContent && trigger) {
+		console.warn('PopoverTrigger: Both buttonContent and trigger props provided. Using trigger.');
+	}
+
+	// Determine which trigger element to use
+	let triggerElement: ReactElement;
+	if (trigger) {
+		// Always wrap custom triggers with Pressable to ensure they work correctly
+		// Pressable will handle pressable elements (button, a, etc.) appropriately
+		triggerElement = (
+			<Pressable>
+				{trigger as any}
+			</Pressable>
+		);
+	} else {
+		// Fallback to default Button with buttonContent
+		triggerElement = <Button scale={scale}>{buttonContent}</Button>;
+	}
+
 	return (
 		<DialogTrigger>
-			<Button scale={scale}>{buttonContent}</Button>
+			{triggerElement}
 			<Popover scale={scale} {...props}>
 				{children}
 			</Popover>

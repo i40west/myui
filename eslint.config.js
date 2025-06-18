@@ -5,7 +5,7 @@ import stylisticPlugin from '@stylistic/eslint-plugin';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import tsparser from '@typescript-eslint/parser';
-import storybook from "eslint-plugin-storybook";
+import storybook from 'eslint-plugin-storybook';
 
 export default [
 	{

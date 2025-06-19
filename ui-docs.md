@@ -483,7 +483,8 @@ interface PopoverProps extends Omit<AriaPopoverProps, 'children'> {
 }
 
 interface PopoverTriggerProps extends Omit<PopoverProps, 'trigger'> {
-  buttonContent: ReactNode;
+  buttonContent?: ReactNode;  // Legacy prop for backward compatibility
+  trigger?: ReactNode;        // New prop for custom triggers
   children: ReactNode;
   scale?: number;
 }
@@ -503,7 +504,7 @@ import { Button } from '@components/ui/Button';
   </Popover>
 </DialogTrigger>
 
-// Popover trigger (most common usage)
+// Using legacy buttonContent prop
 <PopoverTrigger
   buttonContent="Settings"
   showArrow={true}
@@ -516,9 +517,17 @@ import { Button } from '@components/ui/Button';
   </div>
 </PopoverTrigger>
 
-// Without arrow
+// Using new trigger prop with custom element
 <PopoverTrigger
-  buttonContent={<Button>Options</Button>}
+  trigger={
+    <span
+      role="button"
+      tabIndex={0}
+      style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}
+    >
+      Custom clickable text
+    </span>
+  }
   showArrow={false}
 >
   <ul>
@@ -526,6 +535,48 @@ import { Button } from '@components/ui/Button';
     <li>Option 2</li>
     <li>Option 3</li>
   </ul>
+</PopoverTrigger>
+
+// Color swatch as trigger
+<PopoverTrigger
+  trigger={
+    <div
+      role="button"
+      tabIndex={0}
+      style={{
+        width: 40,
+        height: 40,
+        backgroundColor: '#ff6b6b',
+        borderRadius: 4,
+        cursor: 'pointer',
+        border: '2px solid #ddd',
+      }}
+      aria-label="Red color swatch"
+    />
+  }
+>
+  <ColorPicker />
+</PopoverTrigger>
+
+// Custom styled button
+<PopoverTrigger
+  trigger={
+    <button
+      style={{
+        backgroundColor: '#4ecdc4',
+        color: 'white',
+        border: 'none',
+        padding: '10px 20px',
+        borderRadius: 20,
+        cursor: 'pointer',
+        fontSize: 16,
+      }}
+    >
+      Custom Styled Button
+    </button>
+  }
+>
+  <div>Menu content here</div>
 </PopoverTrigger>
 ```
 
@@ -536,11 +587,24 @@ import { Button } from '@components/ui/Button';
 - **Scaling Support**: Uniform scaling affects both popover and arrow size
 - **Dialog Container**: Content wrapped in accessible Dialog component
 - **Automatic Positioning**: Uses react-aria-components positioning system
+- **Custom Triggers**: New `trigger` prop allows any ReactNode as a popover trigger
+- **Backward Compatibility**: Legacy `buttonContent` prop still supported
+- **Automatic Pressable Wrapping**: Custom triggers are wrapped with React Aria's Pressable for proper interaction handling
 
 ### Components
 
 - `Popover`: The popover content container with optional arrow
-- `PopoverTrigger`: Complete trigger + popover solution using Button as trigger
+- `PopoverTrigger`: Complete trigger + popover solution that accepts either:
+  - `buttonContent` prop: Creates a Button component as trigger (legacy)
+  - `trigger` prop: Accepts any custom ReactNode as trigger element (new)
+
+### Accessibility Notes
+
+When using the `trigger` prop with custom elements:
+- Non-button elements should include `role="button"` and `tabIndex={0}`
+- Provide appropriate `aria-label` for non-text triggers (e.g., color swatches)
+- The Pressable wrapper automatically handles keyboard and pointer interactions
+- Custom triggers maintain full React Aria accessibility features
 
 ### Inherited Props
 

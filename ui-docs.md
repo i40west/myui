@@ -707,6 +707,7 @@ interface SliderProps<T extends number | number[]> extends AriaSliderProps<T> {
   scale?: number;
   thumbLabels?: string[];
   showOutput?: boolean;
+  name?: string;
 }
 ```
 
@@ -782,6 +783,16 @@ import { Slider } from '@components/ui/Slider';
   scale={1.5}
   defaultValue={50}
 />
+
+// Form integration
+<form onSubmit={handleSubmit}>
+  <Slider
+    name="volume"
+    label="Volume"
+    defaultValue={75}
+  />
+  <button type="submit">Save Settings</button>
+</form>
 ```
 
 ### Features
@@ -795,6 +806,7 @@ import { Slider } from '@components/ui/Slider';
 - **Visual Feedback**: Different states for dragging, focus, and disabled
 - **Keyboard Navigation**: Full keyboard support with arrow keys, Page Up/Down, Home/End
 - **Touch Support**: Touch-friendly with proper touch-action handling
+- **Form Integration**: Supports `name` prop for HTML form submission
 
 ### Inherited Props
 
@@ -809,7 +821,6 @@ Inherits all props from react-aria-components `Slider` including:
 - `formatOptions?: Intl.NumberFormatOptions` - Number formatting options
 - `orientation?: 'horizontal' | 'vertical'` - Slider orientation
 - `isDisabled?: boolean` - Disabled state
-- `name?: string` - Form field name for submission
 
 ### Visual States
 

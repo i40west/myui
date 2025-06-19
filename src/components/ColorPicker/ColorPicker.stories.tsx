@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import ColorPicker from './ColorPicker';
 import { Form } from 'react-aria-components';
 import { useState } from 'react';
@@ -122,7 +122,7 @@ export const ThinWheel: Story = {
 
 export const WithForm: Story = {
 	render: () => {
-		const [color, setColor] = useState({ mode: 'oklch', l: 0.6, c: 0.15, h: 200 } as culori.Color); // eslint-disable-line react-hooks/rules-of-hooks
+		const [color, setColor] = useState({ mode: 'oklch', l: 0.6, c: 0.15, h: 200 } as culori.Color);
 
 		return (
 			<Form
@@ -149,8 +149,8 @@ export const WithForm: Story = {
 
 export const Multiple: Story = {
 	render: () => {
-		const [primary, setPrimary] = useState({ mode: 'oklch', l: 0.5, c: 0.25, h: 15 } as culori.Color); // eslint-disable-line react-hooks/rules-of-hooks
-		const [secondary, setSecondary] = useState({ mode: 'oklch', l: 0.7, c: 0.15, h: 200 } as culori.Color); // eslint-disable-line react-hooks/rules-of-hooks
+		const [primary, setPrimary] = useState({ mode: 'oklch', l: 0.5, c: 0.25, h: 15 } as culori.Color);
+		const [secondary, setSecondary] = useState({ mode: 'oklch', l: 0.7, c: 0.15, h: 200 } as culori.Color);
 
 		return (
 			<div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>

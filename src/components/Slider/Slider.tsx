@@ -18,6 +18,7 @@ interface SliderProps<T extends number | number[]> extends AriaSliderProps<T> {
 	scale?: number;
 	thumbLabels?: string[];
 	showOutput?: boolean;
+	name?: string;
 }
 
 export function Slider<T extends number | number[]>({
@@ -28,6 +29,7 @@ export function Slider<T extends number | number[]>({
 	scale,
 	thumbLabels,
 	showOutput = true,
+	name,
 	...rest
 }: SliderProps<T>) {
 	const clnames = className ? `${classes.container} ${className}` : classes.container;
@@ -86,6 +88,7 @@ export function Slider<T extends number | number[]>({
 								key={i}
 								index={i}
 								aria-label={thumbLabels?.[i]}
+								name={name}
 								className={({ isDragging, isFocusVisible }) =>
 									`${classes.thumb} ${isDragging ? classes.dragging : ''} ${isFocusVisible ? classes.focused : ''}`
 								}

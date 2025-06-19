@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Form } from 'react-aria-components';
+import { useState } from 'react';
 
 import Slider from './Slider';
 
@@ -93,7 +94,7 @@ export const Controlled: Story = {
 		value: 50,
 	},
 	render: (args) => {
-		const [value, setValue] = useState(50);
+		const [value, setValue] = useState<number | number[]>(50);
 		return (
 			<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
 				<Slider {...args} value={value} onChange={setValue} />
@@ -244,4 +245,3 @@ export const ThreeThumbSlider: Story = {
 };
 
 // Import React hooks
-import { useState } from 'react';

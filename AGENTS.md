@@ -1,6 +1,8 @@
-# CLAUDE.md
+# myui
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Project Description
+
+This is a React component library wrapping React Aria Components.
 
 ## Common Commands
 
@@ -39,7 +41,7 @@ This is a React component library built on top of React Aria Components. Key arc
 
 3. **CSS Modules with Scaling**: Components support a `scale` prop that sets a CSS custom property `--x` for scaling UI elements. CSS files use `calc()` with this variable for responsive sizing.
 
-4. **Export Strategy**: 
+4. **Export Strategy**:
    - Main entry exports all components from `src/index.ts`
    - Individual component exports defined in `package.json` for tree-shaking
    - TypeScript declarations generated alongside JS in `dist/`
@@ -66,8 +68,9 @@ This is a React component library built on top of React Aria Components. Key arc
 
 ## Documentation
 
-- React-Aria documentation is available via the context7 mcp tool
-- Docs for other libraries can also be found with context7
+- Documentation for React-Aria, React, and culori should be available with docs_mcp_server
+- Search docs_mcp_server for other needed documentation
+- Search the web for other needed documenatation
 
 ## Project Guidelines
 

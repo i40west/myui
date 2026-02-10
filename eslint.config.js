@@ -9,7 +9,7 @@ import storybook from 'eslint-plugin-storybook';
 
 export default [
 	{
-		ignores: ['node_modules/', 'dist/', 'packages/*/dist/', '.astro/', '.storybook/', 'packages/*/.storybook/', 'worker-configuration.d.ts'],
+		ignores: ['node_modules/', 'dist/', 'packages/*/dist/', '.astro/', '.storybook/', 'packages/*/.storybook/', 'storybook-static/', 'worker-configuration.d.ts'],
 	},
 	js.configs.recommended,
 	...tseslint.configs.recommended.map(config => ({

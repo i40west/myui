@@ -50,7 +50,7 @@ export default [
 			'@stylistic/no-extra-semi': 'warn',
 			'@stylistic/semi': [ 'warn', 'always', { omitLastInOneLineBlock: true } ],
 			'@stylistic/comma-dangle': [ 'warn', 'always-multiline' ],
-			'@stylistic/quotes': [ 'warn', 'single', { avoidEscape: true, allowTemplateLiterals: true } ],
+			'@stylistic/quotes': [ 'warn', 'single', { avoidEscape: true, allowTemplateLiterals: 'always' } ],
 			'@stylistic/jsx-quotes': [ 'warn', 'prefer-double' ],
 			'@stylistic/eol-last': [ 'warn', 'always' ],
 			'@stylistic/no-trailing-spaces': 'warn',

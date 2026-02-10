@@ -60,18 +60,16 @@ export function ColorPicker({
 	const wheelRef = useRef<HTMLDivElement>(null);
 	const squareRef = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
-		if (value !== undefined) {
-			const parsed = typeof value === 'string' ? culori.parse(value) : value;
-			if (parsed) {
-				setInternalColor(culori.oklch(parsed));
-			}
-		}
-	}, [value]);
+	const parsedValue = value !== undefined
+		? (typeof value === 'string' ? culori.parse(value) : value)
+		: null;
+	const currentColor = parsedValue ? culori.oklch(parsedValue) : internalColor;
 
 	const updateColor = useCallback((newColor: culori.Oklch, source?: 'wheel' | 'square' | 'input') => {
 		if (!disabled && !readOnly) {
-			setInternalColor(newColor);
+			if (value === undefined) {
+				setInternalColor(newColor);
+			}
 			onChange?.(newColor);
 
 			// Announce color changes for screen readers
@@ -96,7 +94,7 @@ export function ColorPicker({
 
 			setAnnouncement(message);
 		}
-	}, [disabled, readOnly, onChange]);
+	}, [disabled, readOnly, onChange, value]);
 
 	const handleWheelInteraction = useCallback((event: React.MouseEvent | React.TouchEvent) => {
 		if (disabled || readOnly || !wheelRef.current) return;
@@ -124,9 +122,9 @@ export function ColorPicker({
 			const angle = Math.atan2(dy, dx);
 			const hue = ((angle * 180 / Math.PI) + 90 + 360) % 360;
 
-			updateColor({ ...internalColor, h: hue }, 'wheel');
+			updateColor({ ...currentColor, h: hue }, 'wheel');
 		}
-	}, [disabled, readOnly, wheelThickness, scale, internalColor, updateColor]);
+	}, [disabled, readOnly, wheelThickness, scale, currentColor, updateColor]);
 
 	const handleSquareInteraction = useCallback((event: React.MouseEvent | React.TouchEvent) => {
 		if (disabled || readOnly || !squareRef.current) return;
@@ -141,8 +139,8 @@ export function ColorPicker({
 		const chroma = x * 0.4;
 		const luminance = 1 - y;
 
-		updateColor({ ...internalColor, l: luminance, c: chroma }, 'square');
-	}, [disabled, readOnly, internalColor, updateColor]);
+		updateColor({ ...currentColor, l: luminance, c: chroma }, 'square');
+	}, [disabled, readOnly, currentColor, updateColor]);
 
 	const handleMouseDown = useCallback((area: 'wheel' | 'square') => (event: React.MouseEvent) => {
 		if (disabled || readOnly) return;
@@ -190,18 +188,18 @@ export function ColorPicker({
 
 	const handleLuminanceChange = useCallback((inputValue: string) => {
 		const l = Math.max(0, Math.min(1, parseFloat(inputValue) || 0));
-		updateColor({ ...internalColor, l }, 'input');
-	}, [internalColor, updateColor]);
+		updateColor({ ...currentColor, l }, 'input');
+	}, [currentColor, updateColor]);
 
 	const handleChromaChange = useCallback((inputValue: string) => {
 		const c = Math.max(0, Math.min(0.4, parseFloat(inputValue) || 0));
-		updateColor({ ...internalColor, c }, 'input');
-	}, [internalColor, updateColor]);
+		updateColor({ ...currentColor, c }, 'input');
+	}, [currentColor, updateColor]);
 
 	const handleHueChange = useCallback((inputValue: string) => {
 		const h = ((parseFloat(inputValue) || 0) + 360) % 360;
-		updateColor({ ...internalColor, h }, 'input');
-	}, [internalColor, updateColor]);
+		updateColor({ ...currentColor, h }, 'input');
+	}, [currentColor, updateColor]);
 
 	const wheelSize = 200 * scale;
 	const wheelRadius = wheelSize / 2;
@@ -211,13 +209,13 @@ export function ColorPicker({
 
 	// Convert hue to angle for positioning
 	// With "from -90deg", hue 0 is at top (-90°), so subtract 90°
-	const wheelThumbAngle = ((internalColor.h || 0) - 90) * Math.PI / 180;
+	const wheelThumbAngle = ((currentColor.h || 0) - 90) * Math.PI / 180;
 	const wheelThumbRadius = wheelRadius - (wheelThickness * scale / 2);
 	const wheelThumbX = Math.cos(wheelThumbAngle) * wheelThumbRadius;
 	const wheelThumbY = Math.sin(wheelThumbAngle) * wheelThumbRadius;
 
-	const squareThumbX = (internalColor.c / 0.4) * 100;
-	const squareThumbY = (1 - internalColor.l) * 100;
+	const squareThumbX = (currentColor.c / 0.4) * 100;
+	const squareThumbY = (1 - currentColor.l) * 100;
 
 	const containerClass = [
 		classes.container,
@@ -230,9 +228,9 @@ export function ColorPicker({
 	if (scale !== 1) style['--x'] = scale.toString();
 
 	const squareStyle: React.CSSProperties = {
-		'--h': internalColor.h || 0,
-		'--c': internalColor.c,
-		'--l': internalColor.l,
+		'--h': currentColor.h || 0,
+		'--c': currentColor.c,
+		'--l': currentColor.l,
 	} as React.CSSProperties;
 
 	// Generate conic gradient stops for the wheel
@@ -242,7 +240,7 @@ export function ColorPicker({
 		const position = (i / stopCount) * 360;
 		// Since gradient rotates -90°, offset hues by -90°
 		const hue = (position - 90 + 360) % 360;
-		const color = culori.oklch({ mode: 'oklch', l: internalColor.l, c: internalColor.c, h: hue });
+			const color = culori.oklch({ mode: 'oklch', l: currentColor.l, c: currentColor.c, h: hue });
 		const clampedColor = culori.clampChroma(color);
 		const cssColor = culori.formatCss(clampedColor);
 		wheelStops.push(`${cssColor} ${position}deg`);
@@ -274,7 +272,7 @@ export function ColorPicker({
 					aria-label="Hue selection wheel"
 					aria-valuemin={0}
 					aria-valuemax={360}
-					aria-valuenow={Math.round(internalColor.h || 0)}
+						aria-valuenow={Math.round(currentColor.h || 0)}
 					tabIndex={-1}
 				>
 					<div
@@ -312,7 +310,7 @@ export function ColorPicker({
 			<div className={classes.inputs}>
 				<TextField
 					label="L"
-					value={internalColor.l.toFixed(3)}
+						value={currentColor.l.toFixed(3)}
 					onChange={handleLuminanceChange}
 					type="number"
 					scale={scale}
@@ -321,7 +319,7 @@ export function ColorPicker({
 				/>
 				<TextField
 					label="C"
-					value={internalColor.c.toFixed(3)}
+						value={currentColor.c.toFixed(3)}
 					onChange={handleChromaChange}
 					type="number"
 					scale={scale}
@@ -330,7 +328,7 @@ export function ColorPicker({
 				/>
 				<TextField
 					label="H"
-					value={Math.round(internalColor.h || 0).toString()}
+						value={Math.round(currentColor.h || 0).toString()}
 					onChange={handleHueChange}
 					type="number"
 					scale={scale}
@@ -342,14 +340,14 @@ export function ColorPicker({
 			<div className={classes.colorPreview}>
 				<div
 					className={classes.colorSwatch}
-					style={{ backgroundColor: culori.formatCss(culori.clampChroma(culori.rgb(internalColor), 'oklch', 'rgb')) }}
+						style={{ backgroundColor: culori.formatCss(culori.clampChroma(culori.rgb(currentColor), 'oklch', 'rgb')) }}
 					title="sRGB"
 				>
 					<span className={classes.swatchLabel}>sRGB</span>
 				</div>
 				<div
 					className={classes.colorSwatch}
-					style={{ backgroundColor: culori.formatCss(culori.clampChroma(culori.rgb(internalColor), 'oklch', 'p3')) }}
+						style={{ backgroundColor: culori.formatCss(culori.clampChroma(culori.rgb(currentColor), 'oklch', 'p3')) }}
 					title={isP3Display ? 'Display P3' : 'sRGB'}
 				>
 					<span className={classes.swatchLabel}>{isP3Display ? 'P3' : 'sRGB'}</span>
@@ -366,7 +364,7 @@ export function ColorPicker({
 				<input
 					type="hidden"
 					name={name}
-					value={culori.formatCss(internalColor)}
+						value={culori.formatCss(currentColor)}
 				/>
 			)}
 

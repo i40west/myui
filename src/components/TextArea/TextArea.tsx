@@ -9,7 +9,6 @@ import { useEffect, useRef } from 'react';
 import classes from './TextArea.module.css';
 
 import type { TextFieldProps as AriaTextFieldProps, ValidationResult } from 'react-aria-components';
-import type { RefObject } from 'react';
 
 interface TextAreaProps extends AriaTextFieldProps {
 	label?: string;
@@ -22,32 +21,31 @@ interface TextAreaProps extends AriaTextFieldProps {
 	scale?: number;
 }
 
-function useTextAreaAutoHeight(ref: RefObject<HTMLTextAreaElement | null>, scale: number = 1.0): void {
-	const adjustHeight = () => {
-		const textarea = ref?.current;
-		if (!textarea) return;
-
-		// Reset height temporarily to get the correct scrollHeight
-		textarea.style.height = 'auto';
-		textarea.style.height = textarea.scrollHeight + 'px';
-	};
-
+function useTextAreaAutoHeight(scale: number = 1.0) {
+	const ref = useRef<HTMLTextAreaElement>(null);
 	useEffect(() => {
-		const textarea = ref?.current;
+		const textarea = ref.current;
 		if (!textarea) return;
+
+		const adjustHeight = () => {
+			// Reset height temporarily to get the correct scrollHeight
+			textarea.style.height = 'auto';
+			textarea.style.height = textarea.scrollHeight + 'px';
+		};
 
 		adjustHeight();
 		textarea.addEventListener('input', adjustHeight);
 		return () => {
 			textarea.removeEventListener('input', adjustHeight);
 		};
-	}, [ref, scale]); // eslint-disable-line react-hooks/exhaustive-deps
+	}, [scale]);
+
+	return ref;
 }
 
 export function TextArea({ label, description, errorMessage, className, width, height, scale, ...props }: TextAreaProps) {
 	const clnames = className ? `${className} ${classes.container}` : classes.container;
-	const ref = useRef<HTMLTextAreaElement>(null);
-	useTextAreaAutoHeight(ref, scale);
+	const ref = useTextAreaAutoHeight(scale);
 	return (
 		<AriaTextField
 			className={clnames}

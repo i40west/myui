@@ -1,6 +1,6 @@
 # UI Components Documentation
 
-This document provides comprehensive documentation for the React UI components that wrap react-aria-components. All components support scaling and follow consistent styling patterns.
+This document provides comprehensive documentation for the React UI components that wrap react-aria-components. Most components support scaling and follow consistent styling patterns.
 
 ## Table of Contents
 
@@ -38,18 +38,20 @@ interface ButtonProps extends AriaButtonProps {
   tooltip?: string;
   className?: string;
   scale?: number;
+  square?: boolean;
 }
 
 interface ButtonGroupProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactElement<typeof Button> | ReactElement<typeof Button>[];
   scale?: number;
+  square?: boolean;
 }
 ```
 
 ### Usage
 
 ```tsx
-import { Button, ButtonGroup } from '@components/ui/Button';
+import { Button, ButtonGroup } from 'myui';
 
 // Basic button
 <Button onPress={() => alert('clicked')}>
@@ -109,8 +111,7 @@ interface RangeCalendarProps<T extends DateValue> extends Omit<AriaRangeCalendar
 ### Usage
 
 ```tsx
-import { Calendar, RangeCalendar } from '@components/ui/Calendar';
-import { today } from '@internationalized/date';
+import { Calendar, RangeCalendar } from 'myui';
 
 // Single date calendar
 <Calendar
@@ -141,7 +142,7 @@ import { today } from '@internationalized/date';
 
 ### Features
 
-- **Timezone Support**: Automatically handles timezone conversions using the project's configured timezone or custom timezone via `timezone` prop
+- **Timezone Support**: Automatically handles timezone conversions using `UTC` by default, or a custom timezone via `timezone` prop
 - **Multiple Date Types**: Accepts `Date`, `DateTime` (Luxon), or `DateValue` objects
 - **Weekend/Weekday Detection**: Automatically applies data attributes for styling
 - **Today Highlighting**: Current date is marked with `data-today` attribute
@@ -149,8 +150,8 @@ import { today } from '@internationalized/date';
 ### Inherited Props
 
 Inherits all props from react-aria-components `Calendar` and `RangeCalendar` including:
-- `value?: DateValue`
-- `onChange?: (value: DateValue) => void`
+- `value?: DateValue` (Calendar) / `RangeValue<DateValue>` (RangeCalendar)
+- `onChange?: (value) => void`
 - `minValue?: DateValue`
 - `maxValue?: DateValue`
 - `isDisabled?: boolean`
@@ -174,7 +175,7 @@ interface CheckboxProps extends AriaCheckboxProps {
 ### Usage
 
 ```tsx
-import { Checkbox } from '@components/ui/Checkbox';
+import { Checkbox } from 'myui';
 
 // Basic checkbox
 <Checkbox
@@ -243,8 +244,7 @@ interface ColorPickerProps {
 ### Usage
 
 ```tsx
-import { ColorPicker } from '@components/ui/ColorPicker';
-import * as culori from 'culori';
+import { ColorPicker } from 'myui';
 
 // Basic color picker
 <ColorPicker
@@ -280,17 +280,17 @@ import * as culori from 'culori';
 ### Features
 
 - **OKLCH Color Space**: Uses perceptually uniform OKLCH color space for intuitive color selection
-- **Visual Selection**: 
+- **Visual Selection**:
   - Circular hue wheel for selecting color hue
   - Square gradient for adjusting luminance (vertical) and chroma (horizontal)
 - **Direct Input**: Three numeric input fields for precise L, C, H value control
 - **Color Preview**: Displays the selected color in both sRGB and Display P3 (when available) color spaces
 - **P3 Display Support**: Automatically detects and utilizes Display P3 color gamut when available
 - **Culori Integration**: Uses the culori library for advanced color manipulation and conversions
-- **Accessibility**: 
+- **Accessibility**:
   - Screen reader announcements for color changes
-  - Keyboard navigation support
-  - ARIA labels for all interactive elements
+  - Keyboard-accessible numeric input fields for precise adjustments
+  - ARIA labels on wheel and square controls
 - **Form Integration**: Hidden input field with `name` prop for form submissions
 
 ### Color Space Details
@@ -336,7 +336,7 @@ interface ComboBoxProps<T extends object> extends Omit<AriaComboBoxProps<T>, 'ch
 ### Usage
 
 ```tsx
-import { ComboBox, ComboBoxItem, ComboBoxItemList } from '@components/ui/ComboBox';
+import { ComboBox, ComboBoxItem, ComboBoxItemList } from 'myui';
 
 // Basic combobox
 <ComboBox
@@ -425,7 +425,7 @@ interface DatePickerProps<T extends DateValue> extends Omit<AriaDatePickerProps<
 ### Usage
 
 ```tsx
-import { DateField, DatePicker } from '@components/ui/DateField';
+import { DateField, DatePicker } from 'myui';
 
 // Date field (keyboard input)
 <DateField
@@ -445,7 +445,7 @@ import { DateField, DatePicker } from '@components/ui/DateField';
 
 // With custom timezone
 <DateField
-  label="Meeting Time"
+  label="Meeting Date"
   timezone="Europe/London"
   defaultValue={new Date()}
 />
@@ -454,7 +454,7 @@ import { DateField, DatePicker } from '@components/ui/DateField';
 ### Features
 
 - **Multiple Date Types**: Accepts `Date`, `DateTime` (Luxon), or `DateValue` objects
-- **Timezone Handling**: Automatic timezone conversion using project configuration or custom timezone via `timezone` prop
+- **Timezone Handling**: Automatic timezone conversion using `UTC` by default, or a custom timezone via `timezone` prop
 - **Segmented Input**: DateField uses segmented input for keyboard-friendly date entry
 - **Calendar Integration**: DatePicker includes calendar popup with the same features as Calendar component
 
@@ -465,7 +465,7 @@ Inherits all props from react-aria-components `DateField` and `DatePicker` inclu
 - `onChange?: (value: DateValue) => void`
 - `minValue?: DateValue`
 - `maxValue?: DateValue`
-- `granularity?: 'day' | 'hour' | 'minute' | 'second'`
+- `granularity` is fixed to `'day'` by this wrapper for both components
 
 ## Popover
 
@@ -493,8 +493,8 @@ interface PopoverTriggerProps extends Omit<PopoverProps, 'trigger'> {
 ### Usage
 
 ```tsx
-import { Popover, PopoverTrigger } from '@components/ui/Popover';
-import { Button } from '@components/ui/Button';
+import { DialogTrigger } from 'react-aria-components';
+import { Popover, PopoverTrigger, Button, ColorPicker } from 'myui';
 
 // Direct popover (used within DialogTrigger)
 <DialogTrigger>
@@ -638,7 +638,7 @@ interface RadioGroupProps extends Omit<AriaRadioGroupProps, 'children' | 'orient
 ### Usage
 
 ```tsx
-import { RadioGroup, RadioGroupList } from '@components/ui/RadioGroup';
+import { RadioGroup, RadioGroupList } from 'myui';
 import { Radio } from 'react-aria-components';
 
 // Basic radio group
@@ -714,7 +714,7 @@ interface SliderProps<T extends number | number[]> extends AriaSliderProps<T> {
 ### Usage
 
 ```tsx
-import { Slider } from '@components/ui/Slider';
+import { Slider } from 'myui';
 
 // Basic slider
 <Slider
@@ -857,7 +857,7 @@ interface SwitchProps extends AriaSwitchProps {
 ### Usage
 
 ```tsx
-import { Switch } from '@components/ui/Switch';
+import { Switch } from 'myui';
 
 // Basic switch
 <Switch
@@ -918,7 +918,7 @@ interface TabsProps extends AriaTabsProps {
 ### Usage
 
 ```tsx
-import { Tabs, TabList, Tab, TabPanel } from '@components/ui/Tabs';
+import { Tabs, TabList, Tab, TabPanel } from 'myui';
 
 <Tabs width="400px">
   <TabList aria-label="Content sections">
@@ -979,7 +979,7 @@ interface TextAreaProps extends AriaTextFieldProps {
 ### Usage
 
 ```tsx
-import { TextArea } from '@components/ui/TextArea';
+import { TextArea } from 'myui';
 
 // Basic textarea
 <TextArea
@@ -1044,7 +1044,7 @@ interface TextFieldProps extends AriaTextFieldProps {
 ### Usage
 
 ```tsx
-import { TextField } from '@components/ui/TextField';
+import { TextField } from 'myui';
 
 // Basic text field
 <TextField
@@ -1061,7 +1061,6 @@ import { TextField } from '@components/ui/TextField';
   placeholder="Search..."
   submitButton
   rounded
-  onSubmit={handleSearch}
 />
 
 // Custom width and scaling
@@ -1089,7 +1088,6 @@ Inherits all props from react-aria-components `TextField` including:
 - `isDisabled?: boolean`
 - `isReadOnly?: boolean`
 - `isRequired?: boolean`
-- `onSubmit?: (value: string) => void`
 
 ## ToggleButtonGroup
 
@@ -1103,13 +1101,16 @@ interface ToggleButtonGroupProps extends AriaToggleButtonGroupProps {
   className?: string;
 }
 
-// ToggleButton uses AriaToggleButtonProps
+interface ToggleButtonProps extends AriaToggleButtonProps {
+  className?: string;
+  scale?: number;
+}
 ```
 
 ### Usage
 
 ```tsx
-import ToggleButtonGroup, { ToggleButton } from '@components/ui/ToggleButtonGroup';
+import { ToggleButtonGroup, ToggleButton } from 'myui';
 
 <ToggleButtonGroup
   selectionMode="multiple"
@@ -1174,7 +1175,7 @@ type TooltipTriggerProps = TooltipTriggerComponentProps & {
 ### Usage
 
 ```tsx
-import { Tooltip, TooltipTrigger } from '@components/ui/Tooltip';
+import { Tooltip, TooltipTrigger, Button } from 'myui';
 
 // Direct tooltip (used within TooltipTrigger)
 <Tooltip>This is a tooltip</Tooltip>
@@ -1217,14 +1218,14 @@ All components use CSS modules for styling and support:
 - **CSS Custom Properties**: For dynamic values like width, height, and scale
 - **Data Attributes**: For state-based styling (selected, focused, etc.)
 - **Responsive Design**: Components adapt to different screen sizes
-- **Consistent Scaling**: The `scale` prop uniformly affects component sizing
+- **Scaling Hooks**: Most components expose a `scale` prop that maps to CSS custom properties
 
 ## Accessibility
 
-All components inherit accessibility features from react-aria-components:
+Components inherit accessibility primitives from react-aria-components:
 
 - **ARIA Labels**: Proper labeling for screen readers
-- **Keyboard Navigation**: Full keyboard support
+- **Keyboard Navigation**: Supported by underlying react-aria primitives, with keyboard input paths exposed by wrappers
 - **Focus Management**: Proper focus handling and indicators
 - **Screen Reader Support**: Optimized for assistive technologies
 - **High Contrast**: Supports high contrast mode

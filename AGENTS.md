@@ -4,6 +4,10 @@
 
 This is a React component library wrapping React Aria Components.
 
+## Component Documentation
+
+If you are consuming this library rather than working on it, component documentation can be found in the `docs/` directory. Start with `docs/index.md`.
+
 ## Common Commands
 
 ```bash
@@ -68,8 +72,10 @@ This is a React component library built on top of React Aria Components. Key arc
 
 ## Documentation
 
-- Documentation for React-Aria, React, and culori should be available with docs_mcp_server
-- Search docs_mcp_server for other needed documentation
+- Documentation for React-Aria, React, and culori may be available with docs_mcp_server
+- Search docs_mcp_server if available for other needed documentation
+- Search mdn_web_docs if available for HTML, CSS, and Javascript documentation
+- Use any other available MCP tools offering documentation
 - Search the web for other needed documenatation
 
 ## Project Guidelines

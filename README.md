@@ -122,5 +122,4 @@ npm run dev
 
 ## Documentation
 
-For detailed component documentation and examples, see [ui-docs.md](./ui-docs.md).
-
+For detailed component documentation and examples, see [docs/index.md](./docs/index.md).

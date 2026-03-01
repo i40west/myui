@@ -94,8 +94,8 @@
 .squareGradient {
 	position: absolute;
 	inset: 0;
-	background: 
-		linear-gradient(to bottom, 
+	background:
+		linear-gradient(to bottom,
 			oklch(100% var(--c) var(--h) / 0),
 			oklch(0% var(--c) var(--h))),
 		linear-gradient(to right,
@@ -134,6 +134,17 @@
 
 .inputField input {
 	font-variant-numeric: tabular-nums;
+}
+
+.inputField input[type='number'] {
+	appearance: textfield;
+	-moz-appearance: textfield;
+}
+
+.inputField input[type='number']::-webkit-outer-spin-button,
+.inputField input[type='number']::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 .gamutWarning {
@@ -199,7 +210,7 @@
 	.squareThumb {
 		transition: box-shadow 0.15s ease;
 	}
-	
+
 	.wheelThumb:hover,
 	.squareThumb:hover {
 		box-shadow: 0 0 0 calc(1px * var(--scale)) white,

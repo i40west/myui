@@ -28,6 +28,24 @@ interface ColorPickerProps {
 	onBlur?: () => void;
 }
 
+type ColorInputKey = 'l' | 'c' | 'h';
+
+function formatLuminanceInput(value: number): string {
+	return value.toFixed(3);
+}
+
+function formatChromaInput(value: number): string {
+	return value.toFixed(3);
+}
+
+function formatHueInput(value: number | undefined): string {
+	return Math.round(value || 0).toString();
+}
+
+function normalizeHue(value: number): number {
+	return ((value % 360) + 360) % 360;
+}
+
 export function ColorPicker({
 	defaultValue,
 	value,
@@ -64,6 +82,8 @@ export function ColorPicker({
 		? (typeof value === 'string' ? culori.parse(value) : value)
 		: null;
 	const currentColor = parsedValue ? culori.oklch(parsedValue) : internalColor;
+	const [editingInput, setEditingInput] = useState<ColorInputKey | null>(null);
+	const [editingInputValue, setEditingInputValue] = useState('');
 
 	const updateColor = useCallback((newColor: culori.Oklch, source?: 'wheel' | 'square' | 'input') => {
 		if (!disabled && !readOnly) {
@@ -187,19 +207,63 @@ export function ColorPicker({
 	}, [isDragging, handleMouseMove, handleMouseUp]);
 
 	const handleLuminanceChange = useCallback((inputValue: string) => {
-		const l = Math.max(0, Math.min(1, parseFloat(inputValue) || 0));
+		setEditingInputValue(inputValue);
+		const parsed = Number.parseFloat(inputValue);
+		if (!Number.isFinite(parsed)) {
+			return;
+		}
+
+		const l = Math.max(0, Math.min(1, parsed));
 		updateColor({ ...currentColor, l }, 'input');
 	}, [currentColor, updateColor]);
 
 	const handleChromaChange = useCallback((inputValue: string) => {
-		const c = Math.max(0, Math.min(0.4, parseFloat(inputValue) || 0));
+		setEditingInputValue(inputValue);
+		const parsed = Number.parseFloat(inputValue);
+		if (!Number.isFinite(parsed)) {
+			return;
+		}
+
+		const c = Math.max(0, Math.min(0.4, parsed));
 		updateColor({ ...currentColor, c }, 'input');
 	}, [currentColor, updateColor]);
 
 	const handleHueChange = useCallback((inputValue: string) => {
-		const h = ((parseFloat(inputValue) || 0) + 360) % 360;
+		setEditingInputValue(inputValue);
+		const parsed = Number.parseFloat(inputValue);
+		if (!Number.isFinite(parsed)) {
+			return;
+		}
+
+		const h = normalizeHue(parsed);
 		updateColor({ ...currentColor, h }, 'input');
 	}, [currentColor, updateColor]);
+
+	const handleInputFocus = useCallback((inputKey: ColorInputKey) => () => {
+		setEditingInput(inputKey);
+		if (inputKey === 'l') {
+			setEditingInputValue(formatLuminanceInput(currentColor.l));
+		} else if (inputKey === 'c') {
+			setEditingInputValue(formatChromaInput(currentColor.c));
+		} else {
+			setEditingInputValue(formatHueInput(currentColor.h));
+		}
+	}, [currentColor.l, currentColor.c, currentColor.h]);
+
+	const handleInputBlur = useCallback(() => {
+		setEditingInput(null);
+		setEditingInputValue('');
+	}, []);
+
+	const luminanceInputValue = editingInput === 'l'
+		? editingInputValue
+		: formatLuminanceInput(currentColor.l);
+	const chromaInputValue = editingInput === 'c'
+		? editingInputValue
+		: formatChromaInput(currentColor.c);
+	const hueInputValue = editingInput === 'h'
+		? editingInputValue
+		: formatHueInput(currentColor.h);
 
 	const wheelSize = 200 * scale;
 	const wheelRadius = wheelSize / 2;
@@ -310,27 +374,33 @@ export function ColorPicker({
 			<div className={classes.inputs}>
 				<TextField
 					label="L"
-						value={currentColor.l.toFixed(3)}
+					value={luminanceInputValue}
 					onChange={handleLuminanceChange}
 					type="number"
+					onFocus={handleInputFocus('l')}
+					onBlur={handleInputBlur}
 					scale={scale}
 					className={classes.inputField}
 					width="5ch"
 				/>
 				<TextField
 					label="C"
-						value={currentColor.c.toFixed(3)}
+					value={chromaInputValue}
 					onChange={handleChromaChange}
 					type="number"
+					onFocus={handleInputFocus('c')}
+					onBlur={handleInputBlur}
 					scale={scale}
 					className={classes.inputField}
 					width="5ch"
 				/>
 				<TextField
 					label="H"
-						value={Math.round(currentColor.h || 0).toString()}
+					value={hueInputValue}
 					onChange={handleHueChange}
 					type="number"
+					onFocus={handleInputFocus('h')}
+					onBlur={handleInputBlur}
 					scale={scale}
 					className={classes.inputField}
 					width="5ch"

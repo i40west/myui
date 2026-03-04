@@ -9,7 +9,8 @@
 	font-size: calc(var(--step--1) * var(--scale));
 	line-height: 1;
 	min-width: 15.5ch;
-	--fg: var(--button-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
+	--fg: var(--datefield-text-color, var(--ui-text-color));
+	--bg: var(--datefield-bg-color, var(--ui-field-bg-color, hsl(0 0% 100% / 0.09)));
 	color: var(--fg);
 }
 
@@ -19,14 +20,14 @@
 	justify-content: center;
 	align-items: center;
 	margin-top: 4px;
-	border: 1px solid var(--datefield-border-color, var(--border-color, teal));
+	border: 1px solid var(--datefield-border-color, var(--ui-border-color));
 	border-radius: 5px;
-	background-color: hsl(0 0% 100% / 0.09);
+	background-color: var(--bg);
 	width: 100%;
 
 	&:has([data-focus-within]) {
 		outline: none;
-		border: 1px solid var(--datefield-border-color, var(--alt-border-color, oklch(from var(--border-color, teal) l calc(c * 0.8) calc(h - 50))));
+		border: 1px solid var(--ui-focus-color);
 	}
 }
 
@@ -65,7 +66,7 @@
 	}
 
 	&[data-placeholder] {
-		color: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+		color: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
 		font-style: italic;
 	}
 
@@ -94,7 +95,7 @@
 	display: block;
 	font-size: calc(var(--step--2) * (1 + 0.5 * (var(--scale) - 1)));
 	line-height: 1;
-	color: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+	color: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
 	padding: 0;
 	margin-top: 4px;
 }

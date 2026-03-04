@@ -10,11 +10,12 @@
 	height: calc(var(--step-3) * (1 + 0.7 * (var(--scale) - 1)));
 	font-size: calc(var(--step--1) * var(--scale));
 	padding: 0 calc(var(--space-2xs) * var(--scale)) calc(2px * var(--scale));
-	border: 1px solid var(--button-border-color, var(--alt-border-color));
+	--bordercol: var(--button-border-color, oklch(from var(--ui-border-color) l calc(c * 0.8) calc(h - 50)));
+	border: 1px solid var(--bordercol);
 	border-radius: calc(var(--step-3) * (1 + 0.7 * (var(--scale) - 1)) / 2);
-	--bg: var(--button-bg-color, oklch(from var(--bg-color, black) 0.3 calc(c * 0.75) calc(h - 30)));
+	--bg: var(--button-bg-color, oklch(from var(--ui-bg-color, black) 0.3 calc(c * 0.75) calc(h - 30)));
 	background-color: var(--bg);
-	--fg: var(--button-text-color, oklch(from var(--text-color, white) 0.89 c h));
+	--fg: var(--button-text-color, oklch(from var(--ui-text-color, white) 0.89 c h));
 	color: var(--fg);
 	outline: none;
 	transition: background-color 0.15s, color 2s;
@@ -39,17 +40,17 @@
 }
 
 .button[data-selected] {
-	background-color: var(--highlight-bg-color, teal);
-	color: var(--primary-9);
+	background-color: var(--ui-togglebuttongroup-selected-bg-color, var(--ui-control-color));
+	color: var(--ui-togglebuttongroup-selected-color, oklch(from var(--fg) calc(l * 1.1) c h));
 }
 
 .button[data-selected][data-hovered] {
-	background-color: oklch(from var(--highlight-bg-color, teal) calc(l * 1.02) calc(c * 0.8) h);
+	background-color: oklch(from var(--ui-togglebuttongroup-selected-bg-color, var(--ui-control-color)) calc(l * 1.02) calc(c * 0.8) h);
 }
 
 .button[data-pressed] {
 	background-color: oklch(from var(--bg) calc(l * 1.4) calc(c * 0.6) h);
-	border-color: oklch(from var(--button-border-color, var(--alt-border-color)) calc(l * 0.95) calc(c * 0.5) h);
+	border-color: oklch(from var(--bordercol) calc(l * 0.95) calc(c * 0.5) h);
 	color: oklch(from var(--fg) calc(l * 0.85) calc(c * 0.85) calc(h - 165));
 }
 
@@ -58,8 +59,8 @@
 }
 
 .button[data-focus-visible] {
-	outline: 2px solid hsl(0 0% 100% / 0.4);
-	outline-offset: calc(2px * var(--scale));
+	outline: 2px solid var(--togglebuttongroup-focus-color, var(--ui-focus-color));
+	outline-offset: 1px;
 }
 
 .button[data-disabled] {

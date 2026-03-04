@@ -1,8 +1,10 @@
 {
   "name": "myui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -11,6 +13,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./with-styles": {
+      "types": "./dist/with-styles.d.ts",
+      "import": "./dist/with-styles.js"
+    },
+    "./styles.css": "./dist/myui.css",
     "./Button": {
       "types": "./dist/components/Button/index.d.ts",
       "import": "./dist/components/Button/index.js"
@@ -74,7 +81,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json && npm run copy-css",
-    "copy-css": "find src/components -name '*.module.css' -exec sh -c 'mkdir -p dist/$(dirname ${1#src/}) && cp \"$1\" dist/${1#src/}' _ {} \\;",
+    "copy-css": "find src/components -name '*.module.css' -exec sh -c 'mkdir -p dist/$(dirname ${1#src/}) && cp \"$1\" dist/${1#src/}' _ {} \\; && cp src/myui.css dist/myui.css",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "dev": "tsc -w",

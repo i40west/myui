@@ -1,8 +1,8 @@
 .container {
-	--selected-color: var(--highlight-bg-color);
-	--selected-color-pressed: var(--highlight-bg-color);
+	--selected-color: var(--ui-control-color);
+	--selected-color-pressed: var(--ui-control-color);
 	--indicator-color: white;
-	--track-color: hsl(0 0 100% / 0.2);
+	--track-color: var(--switch-track-color, hsl(0 0 100% / 0.2));
 	--scale: var(--x, 1.0);
 	--fg: var(--switch-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
 
@@ -39,7 +39,7 @@
 	}
 
 	&[data-focus-visible] .switch {
-		outline: 2px solid var(--switch-highlight-bg-color, var(--ui-highlight-bg-color, var(--highlight-bg-color, teal)));
+		outline: 1px solid var(--switch-focus-color, var(--ui-focus-color));
 		outline-offset: 2px;
 	}
 

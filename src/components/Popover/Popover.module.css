@@ -1,11 +1,11 @@
 .popover {
 	--scale: var(--x, 1.0);
 	--arrow-size: var(--a, 10px);
-	--fg: var(--popover-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
-	--bg: var(--popover-bg-color, oklch(from var(--bg-color, black) calc(l + 0.16) calc(c * 0.62) calc(h - 20)));
+	--fg: var(--popover-text-color, oklch(from var(--ui-text-color, var(--text-color, white)) 0.89 c h));
+	--bg: var(--popover-bg-color, oklch(from var(--ui-bg-color, var(--bg-color, black)) calc(l + 0.16) calc(c * 0.62) calc(h - 20)));
 	width: var(--w, auto);
 	/* max-width: 300px; */
-	--bordercol: var(--popover-border-color, var(--alt-border-color, oklch(from var(--border-color, teal) l calc(c * 0.8) calc(h - 50))));
+	--bordercol: var(--popover-border-color, var(--ui-alt-border-color));
 	border: 1px solid var(--bordercol);
 	border-radius: 6px;
 	background-color: var(--bg);

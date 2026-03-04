@@ -36,29 +36,29 @@
 		width: var(--s, 1lh);
 		height: var(--s, 1lh);
 		box-sizing: border-box;
-		border: 2px solid var(--radiogroup-border-color, var(--alt-border-color, oklch(from var(--border-color, lightblue) l calc(c * 0.8) calc(h - 50))));
+		border: 2px solid var(--radiogroup-border-color, var(--ui-control-color));
 		background: transparent;
 		border-radius: 50%;
 		transition: all 200ms;
 	}
 
 	&[data-pressed]:before {
-		border-color: var(--radiogroup-border-color, var(--alt-border-color, oklch(from var(--border-color, lightblue) l calc(c * 0.8) calc(h - 50))));
+		border-color: var(--radiogroup-border-color, var(--ui-control-color));
 	}
 
 	&[data-selected] {
 		&:before {
-			border-color: var(--radiogroup-border-color, var(--alt-border-color, oklch(from var(--border-color, lightblue) l calc(c * 0.8) calc(h - 50))));
+			border-color: var(--radiogroup-border-color, var(--ui-control-color));
 			border-width: calc(var(--s, 1lh) / 2 - calc(var(--s, 1lh) * 0.166));
 		}
 
 		&[data-pressed]:before {
-			background-color: var(--radiogroup-pressed-border-color, var(--highlight-bg-color, teal));
+			background-color: var(--radiogroup-pressed-border-color, var(--ui-control-color));
 		}
 	}
 
 	&[data-focus-visible]:before {
-		outline: none;
+		outline: 1px solid var(--radiogroup-focus-color, var(--ui-focus-color));
 	}
 }
 
@@ -73,7 +73,7 @@
 .description {
 	display: block;
 	font-size: calc(var(--step--2) * (1 + 0.7 * (var(--scale) - 1)));
-	color: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+	color: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
 	padding: 0;
 	margin: 1px 0 4px 0;
 	line-height: 1em;
@@ -81,7 +81,7 @@
 
 .error {
 	display: block;
-	color: hsl(0 100% 65%);
+	color: var(--ui-error-color);
 	font-size: calc(var(--step--1) * (1 + 0.6 * (var(--scale) - 1)));
 	line-height: 1;
 	margin-top: 2px;

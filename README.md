@@ -30,6 +30,23 @@ function App() {
 }
 ```
 
+### CSS Import Options
+
+These components rely on shared CSS variables defined in `myui.css`.
+
+Option 1: use the styled entrypoint (no separate CSS import):
+
+```tsx
+import { Button, TextField, Calendar, Slider } from 'myui/with-styles';
+```
+
+Option 2: import styles once, then use the default JS entrypoint:
+
+```tsx
+import 'myui/styles.css';
+import { Button, TextField, Calendar, Slider } from 'myui';
+```
+
 ### Individual Component Imports (Recommended for Tree-shaking)
 
 ```tsx

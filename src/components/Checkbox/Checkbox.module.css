@@ -1,5 +1,5 @@
 .container {
-	--selected-color: var(--ui-highlight-bg-color, var(--highlight-bg-color, teal));
+	--selected-color: var(--ui-control-color);
 	--selected-color-pressed: var(--selected-color);
 	--checkcol: var(--checkbox-check-color, white);
 	--fg: var(--checkbox-text-color, var(--ui-text-color, var(--text-color, white)));
@@ -17,7 +17,7 @@
 	.checkbox {
 		width: var(--s, 1lh);
 		height: var(--s, 1lh);
-		border: 2px solid var(--checkbox-border-color, var(--alt-border-color, oklch(from var(--border-color, lightblue) l calc(c * 0.8) calc(h - 50))));
+		border: 2px solid var(--checkbox-border-color, var(--ui-control-color));
 		border-radius: 6px;
 		transition: all 200ms;
 		display: flex;
@@ -43,7 +43,8 @@
 	}
 
 	&[data-focus-visible] .checkbox {
-		outline: none;
+		outline: 1px solid var(--checkbox-focus-color, var(--ui-focus-color));
+		outline-offset: 1px;
 	}
 
 	&[data-selected],
@@ -72,7 +73,7 @@
 }
 
 .label {
-	color: var(--checkbox-label-color, var(--ui-label-color, var(--label-color, var(--fg))));
+	color: var(--checkbox-label-color, var(--ui-label-color));
 	font-size: calc(var(--step--1) * var(--scale));
 	height: 1lh;
 	line-height: 1;

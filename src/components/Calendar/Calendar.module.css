@@ -3,12 +3,12 @@
 	max-width: 100%;
 	--fg: var(--calendar-text-color, var(--ui-text-color, var(--text-color, white)));
 	color: var(--fg);
-	--bordercol: var(--calendar-border-color, var(--alt-border-color, oklch(from var(--border-color, teal) l calc(c * 0.8) calc(h - 50))));
+	--bordercol: var(--calendar-border-color, var(--ui-alt-border-color, oklch(from var(--border-color, teal) l calc(c * 0.8) calc(h - 50))));
 	border: 1px solid var(--bordercol);
 	border-radius: 6px;
 	--scale: var(--x, 1.0);
 	padding: var(--space-xs);
-	background-color: var(--popover-bg-color, oklch(from var(--bg-color, black) calc(l + 0.16) calc(c * 0.62) calc(h - 20)));
+	background-color: var(--popover-bg-color, oklch(from var(--ui-bg-color, var(--bg-color, black)) calc(l + 0.16) calc(c * 0.62) calc(h - 20)));
 	--hlbg: var(--ui-highlight-bg-color, var(--highlight-bg-color, blue));
 
 	header {
@@ -42,7 +42,7 @@
 	.headercell {
 		font-size: calc(var(--step--2) * var(--scale));
 		font-weight: var(--base-weight + 50);
-		color: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+		color: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
 	}
 
 	.grid td[aria-disabled="true"] {
@@ -70,7 +70,7 @@
 		}
 
 		&[data-focus-visible] {
-			outline: none;
+			outline: 1px solid var(--ui-focus-color);
 		}
 
 		&[data-selected] {
@@ -83,11 +83,11 @@
 		}
 
 		&[data-weekend]:not([data-selected]) {
-			color: var(--text-alt-highlight-color);
+			color: var(--ui-text-alt-highlight-color);
 		}
 
 		&[data-today]:not([data-selected]) {
-			color: var(--text-highlight-color);
+			color: var(--ui-text-highlight-color);
 		}
 	}
 

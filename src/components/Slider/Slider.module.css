@@ -29,7 +29,7 @@
 .description {
 	display: block;
 	font-size: calc(var(--step--2) * var(--x));
-	color: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+	color: var(--ui-deemphasis-color);
 	line-height: 1.2;
 	margin-top: calc(var(--space-3xs) * var(--x) * 0.5);
 }
@@ -71,7 +71,7 @@
 
 .trackFill {
 	position: absolute;
-	background-color: var(--slider-track-color, hsl(213, 85%, 55%));
+	background-color: var(--slider-track-color, var(--ui-control-color));
 	border-radius: calc(var(--space-3xs) * var(--x));
 }
 
@@ -92,8 +92,8 @@
 	width: calc(var(--space-s) * var(--x));
 	height: calc(var(--space-s) * var(--x));
 	border-radius: 50%;
-	background-color: var(--slider-bg-color, var(--bg-color, black));
-	border: 2px solid var(--slider-track-color, hsl(213, 85%, 55%));
+	background-color: var(--slider-bg-color, var(--ui-bg-color, black));
+	border: 2px solid var(--slider-track-color, var(--ui-control-color));
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 	cursor: grab;
 	transition: box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
@@ -142,7 +142,7 @@
 
 .error {
 	display: block;
-	color: var(--error-color, hsl(0 100% 65%));
+	color: var(--ui-error-color);
 	font-size: calc(var(--step--2) * var(--x));
 	line-height: 1.2;
 	margin-top: calc(var(--space-3xs) * var(--x));

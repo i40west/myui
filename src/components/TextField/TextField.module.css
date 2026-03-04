@@ -5,7 +5,8 @@
 	justify-content: flex-end;
 	gap: 2px;
 	width: var(--w, fit-content);
-	--fg: var(--textarea-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
+	--fg: var(--textfield-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
+	--bg: var(--textfield-bg-color, var(--ui-field-bg-color));
 	--scale: var(--x, 1.0);
 	--sz: calc(var(--size, var(--step--2)) * var(--scale));
 }
@@ -16,7 +17,7 @@
 	align-items: center;
 	border: 1px solid var(--ui-border-color, var(--border-color));
 	border-radius: 5px;
-	background-color: hsl(0 0% 100% / 0.09);
+	background-color: var(--bg);
 	margin-top: 4px;
 	width: 100%;
 	transition: border-color 0.2s;
@@ -35,7 +36,7 @@
 
 .inputbox:has(.input[data-focused]) {
 	outline: none;
-	border: 1px solid var(--ui-alt-border-color, var(--alt-border-color, teal));
+	border: 1px solid var(--textfield-focus-color, var(--ui-focus-color));
 }
 
 .inputbox:has(.input[data-focus-visible]) {
@@ -63,7 +64,8 @@
 	padding: 0;
 	margin-right: 3px;
 	border-radius: 5px;
-	background-color: var(--alt-4);
+	color: white;
+	background-color: var(--ui-textfield-submit-color, var(--ui-control-color));
 	border: none;
 	display: flex;
 	align-items: center;
@@ -93,7 +95,7 @@
 .description {
 	display: block;
 	font-size: calc(var(--step--1) * (1 + 0.5 * (var(--scale) - 1)));
-	color: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+	color: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
 	padding: 0;
 	margin-top: 4px;
 	margin-left: 1px;

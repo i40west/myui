@@ -2,7 +2,7 @@
 	display: flex;
 	align-items: flex-start;
 	--fg: var(--tabs-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
-	--hlbg: var(--tabs-highlight-bg-color, var(--ui-highlight-bg-color, var(--highlight-bg-color, teal)));
+	--hlbg: var(--tabs-highlight-bg-color, var(--ui-control-color));
 	width: var(--w, fit-content);
 
 	&[data-orientation=horizontal] {
@@ -42,9 +42,9 @@
 		}
 
 		&[data-disabled] {
-			color: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+			color: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
 			&[data-selected] {
-				--bcolor: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+				--bcolor: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
 			}
 		}
 
@@ -60,7 +60,7 @@
 		outline: none;
 
 		&[data-focus-visible] {
-			outline: 2px solid var(--tabs-border-color, var(--alt-border-color, oklch(from var(--border-color, teal) l calc(c * 0.8) calc(h - 50))));
+			outline: 2px solid var(--tabs-focus-color, var(--ui-focus-color));
 		}
 	}
 }

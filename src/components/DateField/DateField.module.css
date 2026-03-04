@@ -9,7 +9,8 @@
 	font-size: calc(var(--step--1) * var(--scale));
 	line-height: 1;
 	min-width: 15.5ch;
-	color: var(--text-color);
+	--fg: var(--button-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
+	color: var(--fg);
 }
 
 .inputgroup {
@@ -18,14 +19,14 @@
 	justify-content: center;
 	align-items: center;
 	margin-top: 4px;
-	border: 1px solid var(--border-color);
+	border: 1px solid var(--datefield-border-color, var(--border-color, teal));
 	border-radius: 5px;
 	background-color: hsl(0 0% 100% / 0.09);
 	width: 100%;
 
 	&:has([data-focus-within]) {
 		outline: none;
-		border: 1px solid var(--alt-border-color);
+		border: 1px solid var(--datefield-border-color, var(--alt-border-color, oklch(from var(--border-color, teal) l calc(c * 0.8) calc(h - 50))));
 	}
 }
 
@@ -34,7 +35,7 @@
 	flex-flow: row nowrap;
 	justify-content: center;
 	align-items: baseline;
-	color: var(--text-color);
+	color: var(--fg);
 	padding: 0.5em;
 	width: 100%;
 	white-space: nowrap;
@@ -57,14 +58,14 @@
 	padding: 0 2px;
 	font-variant-numeric: tabular-nums;
 	text-align: end;
-	color: var(--text-color);
+	color: var(--fg);
 
 	&[data-type=literal] {
 		padding: 0;
 	}
 
 	&[data-placeholder] {
-		color: var(--deemphasis-color);
+		color: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
 		font-style: italic;
 	}
 
@@ -83,7 +84,7 @@
 
 .label {
 	display: block;
-	color: var(--label-color, var(--text-color));
+	color: var(--datefield-label-color, var(--ui-label-color, var(--label-color, var(--fg))));
 	font-size: calc(var(--step--1) * (1 + 0.7 * (var(--scale) - 1)));
 	line-height: 1;
 	height: 1lh;
@@ -93,7 +94,7 @@
 	display: block;
 	font-size: calc(var(--step--2) * (1 + 0.5 * (var(--scale) - 1)));
 	line-height: 1;
-	color: var(--deemphasis-color);
+	color: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
 	padding: 0;
 	margin-top: 4px;
 }

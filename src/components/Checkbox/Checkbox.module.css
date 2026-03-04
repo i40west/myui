@@ -1,7 +1,8 @@
 .container {
-	--selected-color: var(--highlight-bg-color);
-	--selected-color-pressed: var(--highlight-bg-color);
-	--checkmark-color: white;
+	--selected-color: var(--ui-highlight-bg-color, var(--highlight-bg-color, teal));
+	--selected-color-pressed: var(--selected-color);
+	--checkcol: var(--checkbox-check-color, white);
+	--fg: var(--checkbox-text-color, var(--ui-text-color, var(--text-color, white)));
 	--scale: var(--x, 1.0);
 
 	display: flex;
@@ -9,14 +10,14 @@
 	gap: calc(var(--space-3xs) * (1 + 0.8 * (var(--scale) - 1)));
 	font-size: calc(var(--step--1) * var(--scale));
 	line-height: 1.25;
-	color: var(--text-color);
+	color: var(--fg);
 	width: fit-content;
 	cursor: pointer;
 
 	.checkbox {
 		width: var(--s, 1lh);
 		height: var(--s, 1lh);
-		border: 2px solid var(--alt-border-color);
+		border: 2px solid var(--checkbox-border-color, var(--alt-border-color, oklch(from var(--border-color, lightblue) l calc(c * 0.8) calc(h - 50))));
 		border-radius: 6px;
 		transition: all 200ms;
 		display: flex;
@@ -30,7 +31,7 @@
 		width: calc(var(--s, 1lh) - 2px);
 		height: calc(var(--s, 1lh) - 2px);
 		fill: none;
-		stroke: var(--checkmark-color);
+		stroke: var(--checkcol);
 		stroke-width: 3px;
 		stroke-dasharray: 22px;
 		stroke-dashoffset: 66;
@@ -65,13 +66,13 @@
 	&[data-indeterminate] {
 		& svg {
 			stroke: none;
-			fill: var(--checkmark-color);
+			fill: var(--checkcol);
 		}
 	}
 }
 
 .label {
-	color: var(--label-color, var(--text-color));
+	color: var(--checkbox-label-color, var(--ui-label-color, var(--label-color, var(--fg))));
 	font-size: calc(var(--step--1) * var(--scale));
 	height: 1lh;
 	line-height: 1;

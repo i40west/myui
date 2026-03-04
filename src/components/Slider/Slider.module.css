@@ -4,6 +4,7 @@
 	gap: calc(var(--space-3xs) * var(--x, 1));
 	width: var(--w, 100%);
 	--x: 1;
+	--fg: var(--slider-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
 }
 
 .labelContainer {
@@ -14,13 +15,13 @@
 }
 
 .label {
-	color: var(--label-color, var(--text-color));
+	color: var(--slider-label-color, var(--ui-label-color, var(--label-color, var(--fg))));
 	font-size: calc(var(--step--1) * var(--x));
 	font-weight: 500;
 }
 
 .output {
-	color: var(--text-color);
+	color: var(--fg);
 	font-size: calc(var(--step--1) * var(--x));
 	font-variant-numeric: tabular-nums;
 }
@@ -28,7 +29,7 @@
 .description {
 	display: block;
 	font-size: calc(var(--step--2) * var(--x));
-	color: var(--deemphasis-color);
+	color: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
 	line-height: 1.2;
 	margin-top: calc(var(--space-3xs) * var(--x) * 0.5);
 }
@@ -70,7 +71,7 @@
 
 .trackFill {
 	position: absolute;
-	background-color: var(--primary-color, hsl(213, 85%, 55%));
+	background-color: var(--slider-track-color, hsl(213, 85%, 55%));
 	border-radius: calc(var(--space-3xs) * var(--x));
 }
 
@@ -91,8 +92,8 @@
 	width: calc(var(--space-s) * var(--x));
 	height: calc(var(--space-s) * var(--x));
 	border-radius: 50%;
-	background-color: var(--bg-color, white);
-	border: 2px solid var(--primary-color, hsl(213, 85%, 55%));
+	background-color: var(--slider-bg-color, var(--bg-color, black));
+	border: 2px solid var(--slider-track-color, hsl(213, 85%, 55%));
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 	cursor: grab;
 	transition: box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
@@ -118,7 +119,7 @@
 }
 
 .thumb.focused {
-	outline: 2px solid var(--focus-color, hsl(213, 85%, 55%));
+	outline: 2px solid hsl(213, 85%, 55%);
 	outline-offset: 2px;
 }
 

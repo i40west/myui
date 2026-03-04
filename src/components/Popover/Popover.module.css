@@ -1,12 +1,15 @@
 .popover {
 	--scale: var(--x, 1.0);
 	--arrow-size: var(--a, 10px);
+	--fg: var(--popover-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
+	--bg: var(--popover-bg-color, oklch(from var(--bg-color, black) calc(l + 0.16) calc(c * 0.62) calc(h - 20)));
 	width: var(--w, auto);
 	/* max-width: 300px; */
-	border: 1px solid var(--alt-border-color);
+	--bordercol: var(--popover-border-color, var(--alt-border-color, oklch(from var(--border-color, teal) l calc(c * 0.8) calc(h - 50))));
+	border: 1px solid var(--bordercol);
 	border-radius: 6px;
-	background-color: var(--popover-bg-color, oklch(from var(--bg-color) calc(l + 0.16) calc(c * 0.62) calc(h - 20)));
-	color: var(--text-color);
+	background-color: var(--bg);
+	color: var(--fg);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 	outline: none;
 	transform: translate3d(0, 0, 0);
@@ -59,8 +62,8 @@
 
 	svg {
 		display: block;
-		fill: var(--popover-bg-color, oklch(from var(--bg-color) calc(l + 0.16) calc(c * 0.62) calc(h - 20)));
-		stroke: var(--alt-border-color);
+		fill: var(--bg);
+		stroke: var(--bordercol);
 		stroke-width: 1px;
 	}
 }

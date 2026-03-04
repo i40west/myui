@@ -7,13 +7,15 @@
 	gap: 2px;
 	--scale: var(--x, 1.0);
 	--sz: calc(var(--step-2) * var(--scale));
+	--fg: var(--combobox-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
+	--bordercol: var(--calendar-border-color, var(--alt-border-color, oklch(from var(--border-color, teal) l calc(c * 0.8) calc(h - 50))));
 }
 
 .inputbox {
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
-	border: 1px solid var(--border-color);
+	border: 1px solid var(--bordercol);
 	border-radius: 5px;
 	background-color: hsl(0 0% 100% / 0.09);
 	margin-top: 4px;
@@ -22,7 +24,7 @@
 }
 
 .input {
-	color: var(--text-color);
+	color: var(--fg);
 	font-size: calc(var(--step--2) * var(--scale));
 	padding: 5px calc(5px * var(--scale));
 	width: 100%;
@@ -33,7 +35,7 @@
 }
 
 .inputbox:has(.input[data-focused]) {
-	border: 1px solid var(--alt-border-color);
+	border: 1px solid var(--combobox-border-color, var(--alt-border-color, oklch(from var(--border-color, teal) l calc(c * 0.8) calc(h - 50))));
 }
 
 .inputbox:has(.input[data-focus-visible]) {
@@ -48,7 +50,7 @@
 	aspect-ratio: 1;
 	margin: calc(2px * var(--scale));
 	border-radius: 5px;
-	background-color: var(--button-bg-color, var(--highlight-bg-color));
+	background-color: var(--button-bg-color, oklch(from var(--highlight-bg-color, teal) 0.3 calc(c * 0.75) calc(h - 30)));
 	border: none;
 	padding: 0;
 }
@@ -70,10 +72,10 @@
 	--scale: var(--x, 1.0);
 	max-width: unset;
 	width: var(--trigger-width, fit-content);
-	border: 1px solid var(--alt-border-color);
+	border: 1px solid var(--combobox-border-color, var(--alt-border-color, oklch(from var(--border-color, teal) l calc(c * 0.8) calc(h - 50))));
 	border-radius: 4px;
 	background-color: var(--popover-bg-color, oklch(from var(--bg-color) calc(l + 0.16) calc(c * 0.62) calc(h - 20)));
-	color: oklch(from var(--text-color) 0.89 c h);
+	color: oklch(from var(--fg) 0.89 c h);
 	font-size: calc(var(--step--2) * var(--scale));
 }
 
@@ -103,7 +105,7 @@
 	border-radius: 6px;
 	outline: none;
 	cursor: pointer;
-	color: oklch(from var(--text-color) 0.89 c h);
+	color: oklch(from var(--fg) 0.89 c h);
 	font-size: calc(var(--step--2) * var(--scale));
 	position: relative;
 	line-height: calc(var(--step-2) * var(--scale));
@@ -130,7 +132,7 @@
 
 .label {
 	display: block;
-	color: var(--label-color, var(--text-color));
+	color: var(--combobox-label-color, var(--ui-label-color, var(--label-color, var(--fg))));
 	font-size: calc(var(--step--1) * (1 + 0.7 * (var(--scale) - 1)));
 	line-height: 1;
 	height: 1lh;
@@ -146,7 +148,7 @@
 .description {
 	display: block;
 	font-size: calc(var(--step--2) * (1 + 0.5 * (var(--scale) - 1)));
-	color: var(--deemphasis-color);
+	color: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
 	padding: 0;
 	margin-top: 4px;
 	margin-left: 1px;

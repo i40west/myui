@@ -5,6 +5,7 @@
 	justify-content: flex-end;
 	gap: 2px;
 	width: var(--w, fit-content);
+	--fg: var(--textarea-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
 	--scale: var(--x, 1.0);
 	--sz: calc(var(--size, var(--step--2)) * var(--scale));
 }
@@ -12,11 +13,11 @@
 .textarea {
 	font-family: var(--main-font);
 	background-color: hsl(0 0% 100% / 0.09);
-	color: var(--text-color);
+	color: var(--fg);
 	font-size: var(--sz);
 	line-height: 1.4em;
 	padding: 5px 5px 8px calc(5px * var(--scale));
-	border: 1px solid var(--border-color);
+	border: 1px solid var(--ui-border-color, var(--border-color, blue));
 	border-radius: 5px;
 	margin-top: 4px;
 	width: 100%;
@@ -30,7 +31,7 @@
 
 .textarea[data-focused] {
 	outline: none;
-	border: 1px solid var(--alt-border-color);
+	border: 1px solid var(--ui-alt-border-color, var(--alt-border-color, teal));
 }
 
 .textarea[data-focus-visible] {
@@ -39,7 +40,7 @@
 
 .label {
 	display: block;
-	color: var(--label-color, var(--text-color));
+	color: var(--textarea-label-color, var(--ui-label-color, var(--label-color, var(--fg))));
 	font-size: calc(var(--step-0) * (1 + 0.5 * (var(--scale) - 1)));
 	line-height: 1em;
 }
@@ -47,7 +48,7 @@
 .description {
 	display: block;
 	font-size: calc(var(--step--2) * (1 + 0.5 * (var(--scale) - 1)));
-	color: var(--deemphasis-color);
+	color: var(--deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
 	padding: 0;
 	margin-top: 4px;
 	line-height: 1em;
@@ -55,7 +56,7 @@
 
 .error {
 	display: block;
-	color: hsl(0 100% 65%);
+	color: var(--error-color, hsl(0 100% 65%));
 	font-size: calc(var(--step--2) * (1 + 0.5 * (var(--scale) - 1)));
 	line-height: 1;
 	margin-top: 2px;

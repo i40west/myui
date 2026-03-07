@@ -17,7 +17,7 @@
       "types": "./dist/with-styles.d.ts",
       "import": "./dist/with-styles.js"
     },
-    "./styles.css": "./dist/myui.css",
+    "./styles.css": "./dist/styles.css",
     "./Button": {
       "types": "./dist/components/Button/index.d.ts",
       "import": "./dist/components/Button/index.js"
@@ -81,7 +81,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json && npm run copy-css",
-    "copy-css": "find src/components -name '*.module.css' -exec sh -c 'mkdir -p dist/$(dirname ${1#src/}) && cp \"$1\" dist/${1#src/}' _ {} \\; && cp src/myui.css dist/myui.css",
+    "copy-css": "find src/components -name '*.module.css' -exec sh -c 'mkdir -p dist/$(dirname ${1#src/}) && cp \"$1\" dist/${1#src/}' _ {} \\; && cp src/myui.css dist/styles.css && rm -f dist/myui.css",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "dev": "tsc -w",

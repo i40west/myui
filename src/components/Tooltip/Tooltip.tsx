@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+	Focusable,
 	OverlayArrow,
 	Tooltip as AriaTooltip,
 	TooltipTrigger as AriaTooltipTrigger,
@@ -32,9 +33,13 @@ type TooltipTriggerProps = TooltipTriggerComponentProps & {
 };
 
 export function TooltipTrigger({ children, content, delay = 500, ...props }: TooltipTriggerProps) {
+	const trigger = React.isValidElement(children) && typeof children.type === 'string'
+		? <Focusable>{children as any}</Focusable>
+		: children;
+
 	return (
 		<AriaTooltipTrigger delay={delay} {...props}>
-			{children}
+			{trigger}
 			<Tooltip>{content}</Tooltip>
 		</AriaTooltipTrigger>
 	);

@@ -1,9 +1,9 @@
 .container {
 	display: flex;
 	flex-flow: column nowrap;
-	gap: calc(var(--space-3xs) * var(--x, 1));
+	gap: calc(var(--space-3xs) * var(--scale, 1));
 	width: var(--w, 100%);
-	--x: 1;
+	--scale: 1;
 	--fg: var(--slider-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
 }
 
@@ -11,32 +11,32 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
-	gap: calc(var(--space-2xs) * var(--x));
+	gap: calc(var(--space-2xs) * var(--scale));
 }
 
 .label {
 	color: var(--slider-label-color, var(--ui-label-color, var(--label-color, var(--fg))));
-	font-size: calc(var(--step--1) * var(--x));
+	font-size: calc(var(--step--1) * var(--scale));
 	font-weight: 500;
 }
 
 .output {
 	color: var(--fg);
-	font-size: calc(var(--step--1) * var(--x));
+	font-size: calc(var(--step--1) * var(--scale));
 	font-variant-numeric: tabular-nums;
 }
 
 .description {
 	display: block;
-	font-size: calc(var(--step--2) * var(--x));
+	font-size: calc(var(--step--2) * var(--scale));
 	color: var(--ui-deemphasis-color);
 	line-height: 1.2;
-	margin-top: calc(var(--space-3xs) * var(--x) * 0.5);
+	margin-top: calc(var(--space-3xs) * var(--scale) * 0.5);
 }
 
 .track {
 	position: relative;
-	height: calc(var(--space-l) * var(--x));
+	height: calc(var(--space-xs) * var(--scale));
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -44,26 +44,26 @@
 }
 
 .track[data-orientation="vertical"] {
-	width: calc(var(--space-l) * var(--x));
-	height: calc(var(--space-xl) * var(--x) * 4);
+	width: calc(var(--space-l) * var(--scale));
+	height: calc(var(--space-xl) * var(--scale) * 4);
 	flex-direction: column;
 }
 
 .trackBackground {
 	position: absolute;
 	background-color: hsl(0 0% 50% / 0.2);
-	border-radius: calc(var(--space-3xs) * var(--x));
+	border-radius: calc(var(--space-3xs) * var(--scale));
 }
 
 .track[data-orientation="horizontal"] .trackBackground {
-	height: calc(var(--space-3xs) * var(--x));
+	height: calc(var(--space-3xs) * var(--scale));
 	width: 100%;
 	top: 50%;
 	transform: translateY(-50%);
 }
 
 .track[data-orientation="vertical"] .trackBackground {
-	width: calc(var(--space-3xs) * var(--x));
+	width: calc(var(--space-3xs) * var(--scale));
 	height: 100%;
 	left: 50%;
 	transform: translateX(-50%);
@@ -72,25 +72,25 @@
 .trackFill {
 	position: absolute;
 	background-color: var(--slider-track-color, var(--ui-control-color));
-	border-radius: calc(var(--space-3xs) * var(--x));
+	border-radius: calc(var(--space-3xs) * var(--scale));
 }
 
 .track[data-orientation="horizontal"] .trackFill {
-	height: calc(var(--space-3xs) * var(--x));
+	height: calc(var(--space-3xs) * var(--scale));
 	top: 50%;
 	transform: translateY(-50%);
 }
 
 .track[data-orientation="vertical"] .trackFill {
-	width: calc(var(--space-3xs) * var(--x));
+	width: calc(var(--space-3xs) * var(--scale));
 	left: 50%;
 	transform: translateX(-50%);
 	bottom: 0;
 }
 
 .thumb {
-	width: calc(var(--space-s) * var(--x));
-	height: calc(var(--space-s) * var(--x));
+	width: calc(var(--space-s) * var(--scale));
+	height: calc(var(--space-s) * var(--scale));
 	border-radius: 50%;
 	background-color: var(--slider-bg-color, var(--ui-bg-color, black));
 	border: 2px solid var(--slider-track-color, var(--ui-control-color));
@@ -143,7 +143,7 @@
 .error {
 	display: block;
 	color: var(--ui-error-color);
-	font-size: calc(var(--step--2) * var(--x));
+	font-size: calc(var(--step--2) * var(--scale));
 	line-height: 1.2;
-	margin-top: calc(var(--space-3xs) * var(--x));
+	margin-top: calc(var(--space-3xs) * var(--scale));
 }

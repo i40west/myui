@@ -36,7 +36,7 @@ export function Slider<T extends number | number[]>({
 
 	const style: React.CSSProperties = {};
 	if (width) style['--w'] = width;
-	if (scale) style['--x'] = scale.toString();
+	if (scale) style['--scale'] = scale.toString();
 
 	return (
 		<AriaSlider

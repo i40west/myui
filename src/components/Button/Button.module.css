@@ -7,8 +7,8 @@
 	font-size: calc(var(--step--1) * var(--scale));
 	line-height: 1;
 	padding: 0 calc(var(--space-2xs) * var(--scale)) calc(1px * var(--scale));
-	--bg: var(--button-bg-color, oklch(from var(--ui-bg-color, var(--bg-color, black)) calc(l * 1.07) calc(c * 0.75) calc(h - 30)));
-	--fg: var(--button-text-color, oklch(from var(--ui-text-color, var(--text-color, white)) 0.89 c h));
+	--bg: var(--button-bg-color, var(--ui-control-bg-color));
+	--fg: var(--button-text-color, var(--ui-control-text-color));
 	--bordercol: var(--button-border-color, oklch(from var(--ui-border-color) l calc(c * 0.8) calc(h - 50)));
 	border: 1px solid var(--bordercol);
 	border-radius: 1lh;
@@ -34,15 +34,16 @@
 }
 
 .button[data-hovered] {
-	background-color: var(--button-hover-bg-color, oklch(from var(--bg) calc(l * 1.15) c h));
-	color: var(--button-hover-text-color, oklch(from var(--fg) 0.89 calc(c * 0.7) calc(h - 165)));
+	background-color: var(--button-hover-bg-color, oklch(from var(--bg) calc(l * 1.10) c h));
+	color: var(--button-hover-text-color, oklch(from var(--fg) max(l * 1.1, 1.0) calc(c * 0.7) h));
+	border-color: var(--ui-hover-color, inherit);
 	cursor: pointer;
 	transition: background-color 0.15s, color 0.3s;
 }
 
 .button[data-pressed] {
 	background-color: oklch(from var(--bg) calc(l * 0.95) calc(c * 0.6) h);
-	border-color: oklch(from var(--bordercol) calc(l * 0.95) calc(c * 0.5) h);
+	border-color: oklch(from var(--ui-hover-color) calc(l * 0.95) calc(c * 0.5) h);
 	color: oklch(from var(--fg) calc(l * 0.85) calc(c * 0.85) calc(h - 165));
 }
 

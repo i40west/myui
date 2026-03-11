@@ -5,7 +5,7 @@
 	justify-content: flex-end;
 	gap: 2px;
 	width: var(--w, fit-content);
-	--fg: var(--textfield-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
+	--fg: var(--textfield-text-color, var(--ui-text-color));
 	--bg: var(--textfield-bg-color, var(--ui-field-bg-color));
 	--scale: var(--x, 1.0);
 	--sz: calc(var(--size, var(--step--2)) * var(--scale));
@@ -15,7 +15,7 @@
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
-	border: 1px solid var(--ui-border-color, var(--border-color));
+	border: 1px solid var(--textfield-border-color, var(--ui-border-color));
 	border-radius: 5px;
 	background-color: var(--bg);
 	margin-top: 4px;

@@ -4,6 +4,7 @@
 	flex-wrap: wrap;
 	--scale: var(--x, 1.0);
 	--fg: var(--radiogroup-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
+	--col: var(--radiogroup-control-color, var(--ui-control-color));
 	gap: var(--space-3xs);
 	color: var(--fg);
 	font-size: calc(var(--step--1) * var(--scale));
@@ -27,7 +28,7 @@
 	align-items: center;
 	gap: calc(var(--space-3xs) * var(--scale));
 	font-size: calc(var(--step--1) * var(--scale));
-	color: var(--radiogroup-label-color, var(--ui-label-color, var(--label-color, var(--fg))));
+	color: var(--radiogroup-label-color, var(--label-color, var(--ui-label-color, var(--fg))));
 	cursor: pointer;
 
 	&:before {
@@ -36,24 +37,24 @@
 		width: var(--s, 1lh);
 		height: var(--s, 1lh);
 		box-sizing: border-box;
-		border: 2px solid var(--radiogroup-border-color, var(--ui-control-color));
+		border: 2px solid var(--col);
 		background: transparent;
 		border-radius: 50%;
 		transition: all 200ms;
 	}
 
 	&[data-pressed]:before {
-		border-color: var(--radiogroup-border-color, var(--ui-control-color));
+		border-color: var(--col);
 	}
 
 	&[data-selected] {
 		&:before {
-			border-color: var(--radiogroup-border-color, var(--ui-control-color));
+			border-color: var(--col);
 			border-width: calc(var(--s, 1lh) / 2 - calc(var(--s, 1lh) * 0.166));
 		}
 
 		&[data-pressed]:before {
-			background-color: var(--radiogroup-pressed-border-color, var(--ui-control-color));
+			background-color: var(--radiogroup-pressed-border-color, var(--col));
 		}
 	}
 
@@ -64,7 +65,7 @@
 
 .label {
 	display: block;
-	color: var(--radiogroup-label-color, var(--ui-label-color, var(--label-color, var(--fg))));
+	color: var(--radiogroup-label-color, var(--label-color, var(--ui-label-color, var(--fg))));
 	font-size: calc(var(--step--1) * var(--scale));
 	height: 1lh;
 	line-height: 1;

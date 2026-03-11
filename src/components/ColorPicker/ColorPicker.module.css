@@ -1,7 +1,7 @@
 .container {
 	--scale: var(--x, 1.0);
 	--w: auto;
-	--fg: var(--colorpicker-text-color, var(--ui-text-color, var(--text-color, white)));
+	--fg: var(--colorpicker-text-color, var(--ui-text-color));
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -151,7 +151,7 @@
 
 .gamutWarning {
 	font-size: calc(1rem * var(--scale));
-	color: var(--warning-color, #ff9800);
+	color: var(--ui-warning-color, #ff9800);
 	padding: 0 calc(0.25rem * var(--scale));
 	display: flex;
 	align-items: center;
@@ -171,7 +171,7 @@
 	width: calc(200px * var(--scale));
 	border-radius: calc(4px * var(--scale));
 	overflow: hidden;
-	border: calc(1px * var(--scale)) solid var(--ui-border-color, rgba(255, 255, 255, 0.15));
+	border: calc(1px * var(--scale)) solid var(--calendar-border-color, var(--ui-border-color));
 }
 
 .colorSwatch {
@@ -183,7 +183,7 @@
 }
 
 .colorSwatch:first-child {
-	border-right: calc(1px * var(--scale)) solid var(--ui-border-color);
+	border-right: calc(1px * var(--scale)) solid var(--calendar-border-color, var(--ui-border-color));
 }
 
 .swatchLabel {

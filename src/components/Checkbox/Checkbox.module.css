@@ -1,8 +1,8 @@
 .container {
-	--selected-color: var(--ui-control-color);
-	--selected-color-pressed: var(--selected-color);
+	--selcol: var(--checkbox-control-color, var(--ui-control-color));
+	--selcol-pressed: var(--selcol);
 	--checkcol: var(--checkbox-check-color, white);
-	--fg: var(--checkbox-text-color, var(--ui-text-color, var(--text-color, white)));
+	--fg: var(--checkbox-text-color, var(--ui-text-color));
 	--scale: var(--x, 1.0);
 
 	display: flex;
@@ -17,7 +17,7 @@
 	.checkbox {
 		width: var(--s, 1lh);
 		height: var(--s, 1lh);
-		border: 2px solid var(--checkbox-border-color, var(--ui-control-color));
+		border: 2px solid var(--checkbox-border-color, var(--selcol));
 		border-radius: 6px;
 		transition: all 200ms;
 		display: flex;
@@ -50,13 +50,13 @@
 	&[data-selected],
 	&[data-indeterminate] {
 		.checkbox {
-			border-color: var(--selected-color);
-			background: var(--selected-color);
+			border-color: var(--selcol);
+			background: var(--selcol);
 		}
 
 		&[data-pressed] .checkbox {
-			border-color: var(--selected-color-pressed);
-			background: var(--selected-color-pressed);
+			border-color: var(--selcol-pressed);
+			background: var(--selcol-pressed);
 		}
 
 		svg {

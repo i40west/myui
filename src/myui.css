@@ -1,7 +1,7 @@
 :root {
 
-	--ui-text-color: hsl(from var(--text-color, white) h s calc(l * 0.9));
-	--ui-bg-color: var(--bg-color, black);
+	--ui-text-color: var(--text-color, hsl(0 0% 95% / 100%));
+	--ui-bg-color: var(--bg-color, hsl(0 0% 20% / 100%));
 
 	--ui-border-color: var(--border-color, hsl(223 43% 75% / 100%));
 	--ui-alt-border-color: var(--alt-border-color, hsl(200 60% 75% / 100%));
@@ -17,8 +17,12 @@
 	--ui-text-highlight-color: var(--text-highlight-color, hsl(50 75% 75% / 100%));
 	--ui-text-alt-highlight-color: var(--text-alt-highlight-color, hsl(321 70% 75% / 100%));
 
-	--ui-focus-color: var(--ui-warning-color);
+	--ui-focus-color: var(--focus-color, var(--ui-warning-color));
+	--ui-hover-color: var(--hover-color, var(--ui-alt-border-color));
 	--ui-control-color: var(--control-color, hsl(213 85% 55% / 100%));
+	--ui-control-text-color: var(--control-text-color, var(--ui-text-color));
+	--ui-control-bg-color: var(--control-bg-color, hsl(from var(--ui-bg-color) h s calc(l + 12)));
 	--ui-control-highlight-color: var(--control-highlight-color, hsl(171 85% 55% / 100%));
-	--ui-field-bg-color: hsl(0 0% 100% / 0.09);
+
+	--ui-field-bg-color: var(--field-bg-color, hsl(0 0% 100% / 0.07));
 }

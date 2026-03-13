@@ -1,6 +1,13 @@
 # MyUI Component Library
 
-A modern React component library built on top of React Aria Components, providing accessible and customizable UI components with CSS modules styling.
+A React component library built on top of React Aria Components, providing accessible and customizable UI components with CSS modules styling.
+
+> [!WARNING]
+> This is a library I made for myself. It is probably not suitable for use by anyone, including me.
+> The only reason this repo is public is because I want to use it as a dependency in other projects,
+> and NPM flat-out refuses to use HTTPS for Github dependencies. It forces SSH, which breaks CI.
+> This should not be considered a released or supported library for any purpose and while you're
+> welcome to it, if it breaks, you get to keep the pieces.
 
 ## Features
 

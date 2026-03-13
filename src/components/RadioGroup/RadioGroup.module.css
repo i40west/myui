@@ -3,7 +3,7 @@
 	flex-direction: column;
 	flex-wrap: wrap;
 	--scale: var(--x, 1.0);
-	--fg: var(--radiogroup-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
+	--fg: var(--radiogroup-text-color, var(--ui-text-color));
 	--col: var(--radiogroup-control-color, var(--ui-control-color));
 	gap: var(--space-3xs);
 	color: var(--fg);

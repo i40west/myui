@@ -1,7 +1,7 @@
 .tabs {
 	display: flex;
 	align-items: flex-start;
-	--fg: var(--tabs-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
+	--fg: var(--tabs-text-color, var(--ui-text-color));
 	--hlbg: var(--tabs-highlight-bg-color, var(--ui-control-color));
 	width: var(--w, fit-content);
 

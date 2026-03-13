@@ -1,7 +1,7 @@
 .popover {
 	--scale: var(--x, 1.0);
 	--arrow-size: var(--a, 10px);
-	--fg: var(--popover-text-color, oklch(from var(--ui-text-color, var(--text-color, white)) 0.89 c h));
+	--fg: var(--popover-text-color, var(--ui-text-color));
 	--bg: var(--popover-bg-color, oklch(from var(--ui-bg-color, var(--bg-color, black)) calc(l + 0.16) calc(c * 0.62) calc(h - 20)));
 	width: var(--w, auto);
 	/* max-width: 300px; */

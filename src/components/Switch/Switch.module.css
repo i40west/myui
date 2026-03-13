@@ -1,10 +1,10 @@
 .container {
 	--selected-color: var(--ui-control-color);
 	--selected-color-pressed: var(--ui-control-color);
-	--indicator-color: white;
-	--track-color: var(--switch-track-color, hsl(0 0 100% / 0.2));
+	--indicator-color: var(--switch-indicator-color, var(--ui-switch-indicator-color, white));
+	--track-color: var(--switch-track-color, var(--ui-switch-track-color, hsl(0 0 100% / 0.2)));
 	--scale: var(--x, 1.0);
-	--fg: var(--switch-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
+	--fg: var(--switch-text-color, var(--ui-text-color));
 
 	display: flex;
 	align-items: center;

@@ -36,7 +36,7 @@
 }
 
 .inputbox:has(.input[data-focused]) {
-	border: 1px solid var(--ui-focus-color);
+	border: 1px solid var(--combobox-focus-color, var(--ui-focus-color));
 }
 
 .inputbox:has(.input[data-focus-visible]) {
@@ -73,7 +73,7 @@
 	--scale: var(--x, 1.0);
 	max-width: unset;
 	width: var(--trigger-width, fit-content);
-	border: 1px solid var(--combobox-border-color, var(--ui-alt-border-color));
+	border: 1px solid var(--combobox-border-color, var(--popover-border-color, var(--ui-alt-border-color)));
 	border-radius: 4px;
 	background-color: var(--popover-bg-color, oklch(from var(--ui-bg-color) calc(l + 0.16) calc(c * 0.62) calc(h - 20)));
 	--fg: var(--combobox-text-color, var(--ui-text-color));

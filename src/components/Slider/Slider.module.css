@@ -4,7 +4,7 @@
 	gap: calc(var(--space-3xs) * var(--scale, 1));
 	width: var(--w, 100%);
 	--scale: 1;
-	--fg: var(--slider-text-color, var(--ui-text-color, oklch(from var(--text-color, white) 0.89 c h)));
+	--fg: var(--slider-text-color, var(--ui-text-color));
 }
 
 .labelContainer {
@@ -119,8 +119,8 @@
 }
 
 .thumb.focused {
-	outline: 2px solid hsl(213, 85%, 55%);
-	outline-offset: 2px;
+	outline: 1px solid var(--slider-focus-color, var(--ui-focus-color));
+	outline-offset: 1px;
 }
 
 .thumb[data-disabled] {

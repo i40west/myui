@@ -1,8 +1,10 @@
 .tooltip {
 	box-shadow: 0 8px 20px rgba(0 0 0 / 0.1);
 	border-radius: 4px;
-	background: hsl(0 0% 100% / 0.9);
-	color: black;
+	--bg: var(--tooltip-bg-color, var(--ui-tooltip-bg-color, hsl(0 0% 85%)));
+	--fg: var(--tooltip-text-color, var(--ui-tooltip-text-color, black));
+	background: var(--bg);
+	color: var(--fg);
 	forced-color-adjust: none;
 	outline: none;
 	padding: 2px 8px;
@@ -52,6 +54,6 @@
 
 	& .arrow svg {
 		display: block;
-		fill: hsl(0 0% 100% / 0.9);
+		fill: var(--bg);
 	}
 }

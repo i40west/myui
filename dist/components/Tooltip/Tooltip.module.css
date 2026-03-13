@@ -1,0 +1,59 @@
+.tooltip {
+	box-shadow: 0 8px 20px rgba(0 0 0 / 0.1);
+	border-radius: 4px;
+	--bg: var(--tooltip-bg-color, var(--ui-tooltip-bg-color, hsl(0 0% 85%)));
+	--fg: var(--tooltip-text-color, var(--ui-tooltip-text-color, black));
+	background: var(--bg);
+	color: var(--fg);
+	forced-color-adjust: none;
+	outline: none;
+	padding: 2px 8px;
+	max-width: 8em;
+	font-size: var(--step--2);
+	font-weight: 350;
+	line-height: 1.2;
+	text-align: center;
+	/* fixes FF gap */
+	transform: translate3d(0, 0, 0);
+	transition: transform 200ms ease, opacity 300ms ease;
+
+	&[data-entering],
+	&[data-exiting] {
+		transform: var(--origin);
+		opacity: 0;
+	}
+
+	&[data-placement=top] {
+		margin-bottom: 8px;
+		--origin: translateY(3px);
+	}
+
+	&[data-placement=bottom] {
+		margin-top: 8px;
+		--origin: translateY(-3px);
+		& .arrow svg {
+			transform: rotate(180deg);
+		}
+	}
+
+	&[data-placement=right] {
+		margin-left: 8px;
+		--origin: translateX(-3px);
+		& .arrow svg {
+			transform: rotate(90deg);
+		}
+	}
+
+	&[data-placement=left] {
+		margin-right: 8px;
+		--origin: translateX(3px);
+		& .arrow svg {
+			transform: rotate(-90deg);
+		}
+	}
+
+	& .arrow svg {
+		display: block;
+		fill: var(--bg);
+	}
+}

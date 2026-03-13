@@ -1,0 +1,89 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	--scale: var(--x, 1.0);
+	--fg: var(--radiogroup-text-color, var(--ui-text-color));
+	--col: var(--radiogroup-control-color, var(--ui-control-color));
+	gap: var(--space-3xs);
+	color: var(--fg);
+	font-size: calc(var(--step--1) * var(--scale));
+	line-height: 1.25;
+
+	.childContainer {
+		display: flex;
+		flex-direction: column;
+		margin-top: calc(1px * var(--scale));
+		gap: calc(4px * var(--scale));
+	}
+
+	&[data-orientation='horizontal'] .childContainer {
+		flex-direction: row;
+		gap: calc(var(--space-xs) * var(--scale));
+	}
+}
+
+.container :global(.react-aria-Radio) {
+	display: flex;
+	align-items: center;
+	gap: calc(var(--space-3xs) * var(--scale));
+	font-size: calc(var(--step--1) * var(--scale));
+	color: var(--radiogroup-label-color, var(--label-color, var(--ui-label-color, var(--fg))));
+	cursor: pointer;
+
+	&:before {
+		content: '';
+		display: block;
+		width: var(--s, 1lh);
+		height: var(--s, 1lh);
+		box-sizing: border-box;
+		border: 2px solid var(--col);
+		background: transparent;
+		border-radius: 50%;
+		transition: all 200ms;
+	}
+
+	&[data-pressed]:before {
+		border-color: var(--col);
+	}
+
+	&[data-selected] {
+		&:before {
+			border-color: var(--col);
+			border-width: calc(var(--s, 1lh) / 2 - calc(var(--s, 1lh) * 0.166));
+		}
+
+		&[data-pressed]:before {
+			background-color: var(--radiogroup-pressed-border-color, var(--col));
+		}
+	}
+
+	&[data-focus-visible]:before {
+		outline: 1px solid var(--radiogroup-focus-color, var(--ui-focus-color));
+	}
+}
+
+.label {
+	display: block;
+	color: var(--radiogroup-label-color, var(--label-color, var(--ui-label-color, var(--fg))));
+	font-size: calc(var(--step--1) * var(--scale));
+	height: 1lh;
+	line-height: 1;
+}
+
+.description {
+	display: block;
+	font-size: calc(var(--step--2) * (1 + 0.7 * (var(--scale) - 1)));
+	color: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+	padding: 0;
+	margin: 1px 0 4px 0;
+	line-height: 1em;
+}
+
+.error {
+	display: block;
+	color: var(--ui-error-color);
+	font-size: calc(var(--step--1) * (1 + 0.6 * (var(--scale) - 1)));
+	line-height: 1;
+	margin-top: 2px;
+}

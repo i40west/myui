@@ -5,7 +5,7 @@ import {
 	DialogTrigger,
 	Pressable,
 } from 'react-aria-components';
-import { Button } from '../Button';
+import { Button } from '../Button/index.js';
 import classes from './Popover.module.css';
 
 import type { PopoverProps as AriaPopoverProps } from 'react-aria-components';

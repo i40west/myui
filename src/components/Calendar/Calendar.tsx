@@ -17,7 +17,7 @@ import {
 	RangeCalendar as AriaRangeCalendar,
 	Text,
 } from 'react-aria-components';
-import { Button } from '../Button';
+import { Button } from '../Button/index.js';
 import classes from './Calendar.module.css';
 
 import type {

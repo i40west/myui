@@ -1,0 +1,67 @@
+.tabs {
+	display: flex;
+	align-items: flex-start;
+	--fg: var(--tabs-text-color, var(--ui-text-color));
+	--hlbg: var(--tabs-highlight-bg-color, var(--ui-control-color));
+	width: var(--w, fit-content);
+
+	&[data-orientation=horizontal] {
+		flex-direction: column;
+	}
+
+	:global(.react-aria-TabList) {
+		display: flex;
+		font-size: var(--step--1);
+
+		&[data-orientation=horizontal] {
+			border-bottom: 1px solid var(--hlbg);
+
+			:global(.react-aria-Tab) {
+				border-bottom: 3px solid var(--bcolor);
+			}
+		}
+	}
+
+	:global(.react-aria-Tab) {
+		padding: 0 var(--space-2xs) var(--space-3xs);
+		cursor: pointer;
+		position: relative;
+		color: hsl(from var(--fg) h s calc(l - 20));
+		transition: color 200ms;
+		--bcolor: transparent;
+		forced-color-adjust: none;
+
+		&[data-hovered],
+		&[data-focused] {
+			color: var(--fg);
+		}
+
+		&[data-selected] {
+			--bcolor: var(--hlbg);
+			color: var(--fg);
+		}
+
+		&[data-disabled] {
+			color: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+			&[data-selected] {
+				--bcolor: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+			}
+		}
+
+		&[data-focus-visible]:after {
+			outline: none;
+		}
+	}
+
+	:global(.react-aria-TabPanel) {
+		margin-top: 2px;
+		padding: var(--space-xs) var(--space-2xs);
+		border-radius: 4px;
+		outline: none;
+
+		&[data-focus-visible] {
+			outline: 2px solid var(--tabs-focus-color, var(--ui-focus-color));
+		}
+	}
+}
+

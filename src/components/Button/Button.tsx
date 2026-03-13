@@ -1,5 +1,5 @@
 import { Button as AriaButton, ButtonContext, useContextProps } from 'react-aria-components';
-import { TooltipTrigger } from '../Tooltip';
+import { TooltipTrigger } from '../Tooltip/index.js';
 import classes from './Button.module.css';
 
 import type { ButtonProps as AriaButtonProps } from 'react-aria-components';

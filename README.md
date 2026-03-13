@@ -32,7 +32,7 @@ function App() {
 
 ### CSS Import Options
 
-These components rely on shared CSS variables defined in `myui.css`.
+These components rely on shared CSS variables defined in `styles.css`.
 
 Option 1: use the styled entrypoint (no separate CSS import):
 

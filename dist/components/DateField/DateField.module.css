@@ -1,0 +1,109 @@
+.container {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+	justify-content: flex-end;
+	gap: 2px;
+	width: var(--w, fit-content);
+	--scale: var(--x, 1.0);
+	font-size: calc(var(--step--1) * var(--scale));
+	line-height: 1;
+	min-width: 15.5ch;
+	--fg: var(--datefield-text-color, var(--ui-text-color));
+	--bg: var(--datefield-bg-color, var(--ui-field-bg-color, hsl(0 0% 100% / 0.09)));
+	color: var(--fg);
+}
+
+.inputgroup {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	margin-top: 4px;
+	border: 1px solid var(--datefield-border-color, var(--ui-border-color));
+	border-radius: 5px;
+	background-color: var(--bg);
+	width: 100%;
+
+	&:has([data-focus-within]) {
+		outline: none;
+		border: 1px solid var(--ui-focus-color);
+	}
+}
+
+.input {
+	display: inline-flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: baseline;
+	color: var(--fg);
+	padding: 0.5em;
+	width: 100%;
+	white-space: nowrap;
+	outline: none;
+	white-space: nowrap;
+	transition: border-color 0.2s;
+}
+
+.openbutton {
+	height: calc((var(--step--1) + 12px) * var(--scale));
+	aspect-ratio: 1;
+	font-size: calc(var(--step--1) * var(--scale));
+	padding: 0;
+	border: none;
+	border-radius: 3px;
+	margin-right: calc(2px * var(--scale));
+}
+
+.segment {
+	padding: 0 2px;
+	font-variant-numeric: tabular-nums;
+	text-align: end;
+	color: var(--fg);
+
+	&[data-type=literal] {
+		padding: 0;
+	}
+
+	&[data-placeholder] {
+		color: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+		font-style: italic;
+	}
+
+	&:focus {
+		background: hsl(0 0% 100% / 0.18);
+		outline: none;
+		border-radius: 4px;
+		caret-color: transparent;
+	}
+}
+
+.popover {
+	max-width: unset;
+	width: fit-content;
+}
+
+.label {
+	display: block;
+	color: var(--datefield-label-color, var(--ui-label-color, var(--label-color, var(--fg))));
+	font-size: calc(var(--step--1) * (1 + 0.7 * (var(--scale) - 1)));
+	line-height: 1;
+	height: 1lh;
+}
+
+.description {
+	display: block;
+	font-size: calc(var(--step--2) * (1 + 0.5 * (var(--scale) - 1)));
+	line-height: 1;
+	color: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+	padding: 0;
+	margin-top: 4px;
+}
+
+.error {
+	display: block;
+	color: hsl(0 100% 65%);
+	font-size: calc(var(--step--2) * (1 + 0.5 * (var(--scale) - 1)));
+	line-height: 1;
+	margin-top: 2px;
+}

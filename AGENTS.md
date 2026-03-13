@@ -70,6 +70,15 @@ This is a React component library built on top of React Aria Components. Key arc
 - Blank lines should not have indentation and there should be no trailing spaces on any lines
 - All code and other text files must end with a newline
 
+## TypeScript Module Specifiers
+
+- For build-included TypeScript files, use explicit `.js` extensions in local relative imports and re-exports
+- This applies to files that compile into the published ESM in `dist/`
+- Do not use extensionless local relative imports in published library code
+- Do not use `.ts` or `.tsx` extensions in runtime imports
+- CSS and CSS module imports should keep their real `.css` filenames
+- Storybook-only files may follow local tooling conventions, but matching the published-code pattern is preferred
+
 ## Documentation
 
 - Documentation for React-Aria, React, and culori may be available with docs_mcp_server
@@ -84,4 +93,3 @@ This is a React component library built on top of React Aria Components. Key arc
 - If adding a dependency seems like a good idea, suggest it and explain the justification, and provide alternate approaches as well
 - To the greatest extent possible, use existing patterns and conventions when creating new code and files
 - Keep solutions simple. Avoid over-engineering, premature optimization, and premature refactoring
-

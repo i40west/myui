@@ -5,7 +5,7 @@ import {
 	FieldError,
 	Text,
 } from 'react-aria-components';
-import { Button } from '../Button';
+import { Button } from '../Button/index.js';
 import classes from './TextField.module.css';
 
 import type { TextFieldProps as AriaTextFieldProps, ValidationResult } from 'react-aria-components';

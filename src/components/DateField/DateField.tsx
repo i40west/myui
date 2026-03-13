@@ -15,8 +15,8 @@ import {
 	Text,
 } from 'react-aria-components';
 import { DateTime } from 'luxon';
-import { Calendar } from '../Calendar';
-import { Button } from '../Button';
+import { Calendar } from '../Calendar/index.js';
+import { Button } from '../Button/index.js';
 import classes from './DateField.module.css';
 
 import type {

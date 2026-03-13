@@ -1,0 +1,112 @@
+.container {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+	justify-content: flex-end;
+	gap: 2px;
+	width: var(--w, fit-content);
+	--fg: var(--textfield-text-color, var(--ui-text-color));
+	--bg: var(--textfield-bg-color, var(--ui-field-bg-color));
+	--scale: var(--x, 1.0);
+	--sz: calc(var(--size, var(--step--2)) * var(--scale));
+}
+
+.inputbox {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	border: 1px solid var(--textfield-border-color, var(--ui-border-color));
+	border-radius: 5px;
+	background-color: var(--bg);
+	margin-top: 4px;
+	width: 100%;
+	transition: border-color 0.2s;
+}
+
+.input {
+	color: var(--fg);
+	font-size: var(--sz);
+	padding: 5px;
+	width: 100%;
+	white-space: nowrap;
+	outline: none;
+	background-color: transparent;
+	border: none;
+}
+
+.inputbox:has(.input[data-focused]) {
+	outline: none;
+	border: 1px solid var(--textfield-focus-color, var(--ui-focus-color));
+}
+
+.inputbox:has(.input[data-focus-visible]) {
+	outline: none;
+}
+
+.rounded .inputbox {
+	border-radius: var(--sz);
+}
+
+.rounded .input {
+	margin-left: calc(var(--sz) / 2 - 3px);
+	margin-right: calc(var(--sz) / 2 - 5px);
+}
+
+.rounded .submit {
+	border-radius: var(--sz);
+	margin-right: 4px;
+}
+
+.submit {
+	font-size: var(--sz);
+	height: calc(var(--sz) + 6px);
+	width: calc(var(--sz) + 6px);
+	padding: 0;
+	margin-right: 3px;
+	border-radius: 5px;
+	color: white;
+	background-color: var(--ui-textfield-submit-color, var(--ui-control-color));
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.submit svg {
+	width: calc(var(--sz) + 5px);
+	height: calc(var(--sz) + 5px);
+}
+
+.label {
+	display: block;
+	color: var(--textfield-label-color, var(--ui-label-color, var(--label-color, var(--fg))));
+	font-size: calc(var(--step--1) * (1 + 0.7 * (var(--scale) - 1)));
+	line-height: 1;
+	height: 1lh;
+	margin-left: 1px;
+}
+
+.rounded .label,
+.rounded .description,
+.rounded .error {
+	margin-left: calc(var(--sz) / 2 - 3px);
+}
+
+.description {
+	display: block;
+	font-size: calc(var(--step--1) * (1 + 0.5 * (var(--scale) - 1)));
+	color: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+	padding: 0;
+	margin-top: 4px;
+	margin-left: 1px;
+	line-height: 1em;
+}
+
+.error {
+	display: block;
+	color: hsl(0 100% 65%);
+	font-size: calc(var(--step--1) * (1 + 0.5 * (var(--scale) - 1)));
+	line-height: 1;
+	margin-top: 2px;
+	margin-left: 3px;
+}

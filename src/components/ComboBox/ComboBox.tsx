@@ -10,7 +10,7 @@ import {
 	Popover,
 	Text,
 } from 'react-aria-components';
-import { Button } from '../Button';
+import { Button } from '../Button/index.js';
 import classes from './ComboBox.module.css';
 
 import type {

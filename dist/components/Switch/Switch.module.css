@@ -1,0 +1,72 @@
+.container {
+	--selected-color: var(--ui-control-color);
+	--selected-color-pressed: var(--ui-control-color);
+	--indicator-color: var(--switch-indicator-color, var(--ui-switch-indicator-color, white));
+	--track-color: var(--switch-track-color, var(--ui-switch-track-color, hsl(0 0 100% / 0.2)));
+	--scale: var(--x, 1.0);
+	--fg: var(--switch-text-color, var(--ui-text-color));
+
+	display: flex;
+	align-items: center;
+	gap: calc(var(--space-3xs) * (1 + 0.8 * (var(--scale) - 1)));
+	font-size: calc(var(--step--1) * var(--scale));
+	line-height: 1.25;
+	color: var(--fg);
+	width: fit-content;
+	cursor: pointer;
+
+	.switch {
+		width: calc(var(--s, 1.8lh));
+		height: calc(var(--s, 1lh));
+		background: var(--track-color);
+		border-radius: calc(var(--s, 1lh) / 2);
+		padding: 2px;
+		transition: all 200ms;
+		position: relative;
+		flex-shrink: 0;
+	}
+
+	.indicator {
+		width: calc(var(--s, 1lh) - 4px);
+		height: calc(var(--s, 1lh) - 4px);
+		background: var(--indicator-color);
+		border-radius: 50%;
+		transition: all 200ms;
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	}
+
+	&[data-focus-visible] .switch {
+		outline: 1px solid var(--switch-focus-color, var(--ui-focus-color));
+		outline-offset: 2px;
+	}
+
+	&[data-selected] {
+		.switch {
+			background: var(--selected-color);
+		}
+
+		&[data-pressed] .switch {
+			background: var(--selected-color-pressed);
+		}
+
+		.indicator {
+			transform: translateX(calc(var(--s, 0.9lh) - 2px * var(--scale)));
+		}
+	}
+
+	&[data-disabled] {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+.label {
+	color: var(--switch-label-color, var(--ui-label-color, var(--label-color, var(--fg))));
+	font-size: calc(var(--step--1) * var(--scale));
+	height: 1lh;
+	line-height: 1;
+	cursor: pointer;
+}

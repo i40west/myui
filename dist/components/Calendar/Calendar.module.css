@@ -1,0 +1,99 @@
+.container {
+	width: fit-content;
+	max-width: 100%;
+	--fg: var(--calendar-text-color, var(--ui-text-color, var(--text-color, white)));
+	color: var(--fg);
+	--bordercol: var(--calendar-border-color, var(--ui-alt-border-color, oklch(from var(--border-color, teal) l calc(c * 0.8) calc(h - 50))));
+	border: 1px solid var(--bordercol);
+	border-radius: 6px;
+	--scale: var(--x, 1.0);
+	padding: var(--space-xs);
+	background-color: var(--popover-bg-color, oklch(from var(--ui-bg-color, var(--bg-color, black)) calc(l + 0.16) calc(c * 0.62) calc(h - 20)));
+	--hlbg: var(--ui-highlight-bg-color, var(--highlight-bg-color, blue));
+
+	header {
+		display: flex;
+		align-items: center;
+		margin: 0 4px .5rem 4px;
+
+		h2 {
+			font-family: var(--main-font);
+			font-size: calc(var(--step--1) * var(--scale));
+		}
+
+		.heading {
+			font-weight: var(--base-weight + 50);
+			flex: 1;
+			margin: 0;
+			text-align: center;
+			font-size: calc(var(--step--1) * var(--scale));
+		}
+	}
+
+	.navbutton {
+		width: calc(var(--space-m) * var(--scale));
+		height: calc(var(--space-m) * var(--scale));
+		font-size: calc(var(--step--1) * var(--scale));
+		padding: 0;
+		border: none;
+		border-radius: 5px;
+	}
+
+	.headercell {
+		font-size: calc(var(--step--2) * var(--scale));
+		font-weight: var(--base-weight + 50);
+		color: var(--ui-deemphasis-color, hsl(from var(--fg) h s calc(l - 12)));
+	}
+
+	.grid td[aria-disabled="true"] {
+		cursor: default;
+	}
+
+	.cell {
+		width: calc(var(--space-m) * var(--scale));
+		font-size: calc(var(--step--1) * var(--scale));
+		line-height: calc(var(--space-m) * var(--scale));
+		text-align: center;
+		border-radius: 6px;
+		cursor: default;
+		outline: none;
+		margin: 1px;
+		forced-color-adjust: none;
+		cursor: pointer;
+
+		&[data-outside-month] {
+			display: none;
+		}
+
+		&[data-pressed] {
+			background: var(--hlbg);
+		}
+
+		&[data-focus-visible] {
+			outline: 1px solid var(--ui-focus-color);
+		}
+
+		&[data-selected] {
+			background: var(--hlbg);
+			color: var(--fg);
+		}
+
+		&[data-hovered]:not([data-selected]) {
+			background-color: hsl(0 0% 100% / 15%);
+		}
+
+		&[data-weekend]:not([data-selected]) {
+			color: var(--ui-text-alt-highlight-color);
+		}
+
+		&[data-today]:not([data-selected]) {
+			color: var(--ui-text-highlight-color);
+		}
+	}
+
+	&[data-range] .cell {
+		&[data-selected]:not([data-selection-start]):not([data-selection-end]) {
+			background-color: oklch(from var(--hlbg) calc(l - 0.02) calc(c - 0.05) h);
+		}
+	}
+}

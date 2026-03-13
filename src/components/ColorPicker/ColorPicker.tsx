@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Label, Text, FieldError } from 'react-aria-components';
-import { TextField } from '../TextField';
+import { TextField } from '../TextField/index.js';
 import * as culori from 'culori';
 import classes from './ColorPicker.module.css';
 

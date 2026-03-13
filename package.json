@@ -1,6 +1,6 @@
 {
   "name": "myui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "sideEffects": [
     "**/*.css"
@@ -81,11 +81,12 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json && npm run copy-css",
-    "copy-css": "find src/components -name '*.module.css' -exec sh -c 'mkdir -p dist/$(dirname ${1#src/}) && cp \"$1\" dist/${1#src/}' _ {} \\; && cp src/myui.css dist/styles.css && rm -f dist/myui.css",
+    "copy-css": "find src/components -name '*.module.css' -exec sh -c 'mkdir -p dist/$(dirname ${1#src/}) && cp \"$1\" dist/${1#src/}' _ {} \\; && cp src/styles.css dist/styles.css",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "dev": "tsc -w",
     "clean": "rm -rf dist",
+    "prepack": "npm run build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
